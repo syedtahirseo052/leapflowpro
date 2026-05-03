@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeadRadar Pro v6 — Google Maps B2B Outreach Engine</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f1c3f;--blue:#1d4ed8;--blue2:#2563eb;--blue3:#3b82f6;
+  --blue-l:#eff6ff;--blue-m:#dbeafe;
+  --teal:#0891b2;--teal2:#06b6d4;--teal-l:#ecfeff;
+  --green:#059669;--green2:#10b981;--green-l:#ecfdf5;
+  --amber:#d97706;--amber-l:#fffbeb;
+  --red:#dc2626;--red-l:#fef2f2;
+  --purple:#7c3aed;--purple-l:#f5f3ff;
+  --bg:#f8faff;--bg2:#f1f5fe;--white:#fff;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --text:#0f172a;--text2:#334155;--text3:#64748b;--text4:#94a3b8;
+  --sh:0 1px 3px rgba(0,0,0,.07);
+  --sh2:0 4px 16px rgba(15,28,63,.08);
+  --sh3:0 20px 60px rgba(15,28,63,.12);
+  --sans:'Plus Jakarta Sans',sans-serif;
+  --body:'Inter',sans-serif;
+  --mono:'Fira Code',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;box-shadow:var(--sh)}
+.nav-in{max-width:1500px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:58px}
+.logo{display:flex;align-items:center;gap:9px}
+.lm{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--blue2),var(--teal2));display:flex;align-items:center;justify-content:center;font-size:.9rem;box-shadow:0 2px 8px rgba(37,99,235,.2)}
+.ln{font-family:var(--sans);font-size:1.15rem;font-weight:900;color:var(--navy);letter-spacing:-.5px}.ln span{color:var(--blue2)}
+.lb{padding:2px 8px;background:var(--blue-l);border:1px solid var(--blue-m);border-radius:20px;font-size:.55rem;font-weight:700;color:var(--blue2);letter-spacing:.05em}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nb{padding:7px 16px;border-radius:7px;border:none;background:var(--blue2);color:#fff;font-family:var(--body);font-weight:700;font-size:.78rem;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,.22)}
+.nb:hover{background:var(--blue);transform:translateY(-1px)}
+.ng{padding:7px 14px;border-radius:7px;border:1.5px solid var(--border2);background:var(--white);color:var(--text2);font-size:.76rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:var(--body)}
+.ng:hover{border-color:var(--blue3);color:var(--blue2)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy),#162454,#0c2461);position:relative;overflow:hidden;padding-bottom:50px}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.022) 1.5px,transparent 1.5px);background-size:28px 28px}
+.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:56px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 100%)}
+.hero-in{max-width:1100px;margin:0 auto;padding:56px 24px 72px;text-align:center;position:relative;z-index:1}
+.hbadge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);font-size:.64rem;font-weight:600;color:rgba(255,255,255,.85);letter-spacing:.08em;margin-bottom:20px}
+.ld{width:6px;height:6px;border-radius:50%;background:#34d399;box-shadow:0 0 6px #34d399;animation:bp 1.5s infinite}
+@keyframes bp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.hero-h1{font-family:var(--sans);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:900;line-height:1.08;letter-spacing:-2px;margin-bottom:14px;color:#fff}
+.hero-h1 em{font-style:normal;background:linear-gradient(135deg,#93c5fd,#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:.93rem;color:rgba(255,255,255,.68);max-width:520px;margin:0 auto 28px;line-height:1.72}
+.hero-acts{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.h-p{padding:12px 26px;border-radius:9px;border:none;background:#fff;color:var(--navy);font-family:var(--sans);font-weight:800;font-size:.88rem;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(255,255,255,.15)}
+.h-p:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,255,255,.22)}
+.h-o{padding:12px 20px;border-radius:9px;border:1px solid rgba(255,255,255,.27);background:rgba(255,255,255,.06);color:#fff;font-family:var(--sans);font-weight:600;font-size:.85rem;cursor:pointer;transition:all .2s}
+.h-o:hover{background:rgba(255,255,255,.12)}
+.hst-row{display:flex;max-width:620px;margin:38px auto 0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:13px;overflow:hidden;backdrop-filter:blur(8px)}
+.hst{flex:1;padding:16px;text-align:center;border-right:1px solid rgba(255,255,255,.07)}
+.hst:last-child{border-right:none}
+.hst-v{font-family:var(--sans);font-size:1.5rem;font-weight:900;color:#fff;line-height:1}
+.hst-l{font-size:.54rem;font-weight:600;color:rgba(255,255,255,.42);letter-spacing:.1em;margin-top:3px;text-transform:uppercase}
+
+/* Ticker */
+.ticker{background:#0c1a3a;border-top:1px solid rgba(255,255,255,.04);padding:8px 0;overflow:hidden}
+.tt{display:flex;animation:tick 30s linear infinite;white-space:nowrap}
+.ti{display:inline-flex;align-items:center;gap:8px;padding:0 24px;font-size:.66rem;font-weight:500;color:rgba(255,255,255,.44);border-right:1px solid rgba(255,255,255,.06)}
+.ti .tg{font-size:.85rem}.ti .tn{color:rgba(255,255,255,.78)}.ti .tc{color:#93c5fd}
+.ti .ts{padding:1px 6px;border-radius:8px;color:#fff;font-size:.56rem;font-weight:700}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* DISCLAIMER BANNER */
+.disclaimer{background:var(--amber-l);border:1px solid rgba(217,119,6,.25);border-radius:10px;padding:11px 16px;margin:20px 24px 0;max-width:1452px;margin-left:auto;margin-right:auto;font-size:.72rem;color:var(--text2);line-height:1.7}
+.disclaimer strong{color:var(--amber)}
+
+/* APP */
+.app{max-width:1500px;margin:0 auto;padding:20px 24px;display:grid;grid-template-columns:380px 1fr;gap:20px;min-height:calc(100vh - 200px)}
+
+/* LEFT */
+.left{background:var(--white);border:1px solid var(--border);border-radius:14px;box-shadow:var(--sh2);display:flex;flex-direction:column;overflow:hidden}
+.left-h{padding:14px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,var(--blue-l),var(--teal-l))}
+.left-ht{font-family:var(--sans);font-size:.86rem;font-weight:800;color:var(--navy)}
+.left-hs{font-size:.67rem;color:var(--text3);margin-top:2px}
+.left-b{padding:16px 16px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
+.left-f{padding:12px 16px;border-top:1px solid var(--border)}
+
+.fl{font-size:.58rem;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.inp{width:100%;padding:8px 11px;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;font-family:var(--body);font-size:.8rem;color:var(--text);outline:none;transition:all .2s}
+.inp:focus{border-color:var(--blue2);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.08)}
+
+.sb{display:flex;flex-direction:column;gap:9px}
+.sbh{display:flex;align-items:center;gap:8px}
+.sbn{width:21px;height:21px;border-radius:50%;background:var(--blue2);color:#fff;font-family:var(--sans);font-weight:800;font-size:.62rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 0 2px rgba(37,99,235,.12)}
+.sbt{font-family:var(--sans);font-weight:700;font-size:.8rem;color:var(--navy)}
+
+/* Country */
+.csw{position:relative}
+.cdrop{position:absolute;top:calc(100%+4px);left:0;right:0;z-index:300;background:#fff;border:1.5px solid var(--border2);border-radius:9px;max-height:260px;overflow-y:auto;display:none;box-shadow:var(--sh3)}
+.cdrop.open{display:block}
+.copt{padding:8px 11px;cursor:pointer;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);transition:background .1s}
+.copt:last-child{border-bottom:none}
+.copt:hover,.copt.on{background:var(--blue-l)}
+.cf{font-size:.88rem;flex-shrink:0}.cn{flex:1;font-size:.76rem;font-weight:600;color:var(--text)}
+.cr{font-size:.52rem;color:var(--text4);background:var(--bg2);padding:1px 5px;border-radius:4px}
+.cs{padding:2px 7px;border-radius:9px;font-size:.56rem;font-weight:800;color:#fff;flex-shrink:0}
+.sel-d{display:none;padding:8px 11px;border-radius:8px;font-size:.78rem;font-weight:600;align-items:center;gap:7px}
+.sel-x{margin-left:auto;font-size:.58rem;cursor:pointer;padding:2px 6px;border-radius:4px;border:1px solid var(--border2);background:#fff;color:var(--text3);font-family:var(--body)}
+.sel-x:hover{color:var(--red);border-color:var(--red)}
+.scard{border-radius:10px;padding:11px 13px;display:none;margin-top:2px}
+.scard.on{display:block}
+
+/* City */
+.city-sw{position:relative;display:none}
+.city-drop{position:absolute;top:calc(100%+4px);left:0;right:0;z-index:290;background:#fff;border:1.5px solid var(--border2);border-radius:9px;max-height:220px;overflow-y:auto;display:none;box-shadow:var(--sh3)}
+.city-drop.open{display:block}
+.city-opt{padding:8px 12px;cursor:pointer;font-size:.76rem;font-weight:600;border-bottom:1px solid var(--border);color:var(--text);transition:background .1s;display:flex;align-items:center;justify-content:space-between}
+.city-opt:hover{background:var(--teal-l);color:var(--teal)}
+.cpill{font-family:var(--sans);font-size:.55rem;font-weight:800;padding:2px 6px;border-radius:8px;color:#fff}
+.city-ph{font-size:.66rem;color:var(--text4);padding:5px 0}
+.city-sel{display:none;padding:8px 11px;border-radius:8px;font-size:.78rem;font-weight:700;align-items:center;gap:6px}
+.city-sel-x{margin-left:auto;font-size:.58rem;cursor:pointer;padding:2px 5px;border-radius:4px;border:1px solid var(--border2);background:#fff;color:var(--text3);font-family:var(--body)}
+.city-sel-x:hover{color:var(--red);border-color:var(--red)}
+.city-sc{display:none;border-radius:9px;padding:10px 12px;font-size:.68rem;margin-top:3px}
+.city-sc.on{display:block}
+
+/* Keyword */
+.kww{position:relative}
+.kwi{width:100%;padding:8px 38px 8px 11px;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;font-family:var(--body);font-size:.8rem;color:var(--text);outline:none;transition:all .2s}
+.kwi:focus{border-color:var(--blue2);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.08)}
+.kwa{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:6px;background:var(--blue2);border:none;color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.kwa:hover{background:var(--blue)}
+.kwtags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.kwtag{padding:3px 8px;border-radius:20px;background:var(--blue-l);border:1px solid var(--blue-m);font-size:.6rem;font-weight:600;color:var(--blue2);display:flex;align-items:center;gap:4px}
+.kwx{cursor:pointer;color:var(--text4)}.kwx:hover{color:var(--red)}
+.sugt{font-size:.56rem;font-weight:700;color:var(--text4);letter-spacing:.08em;text-transform:uppercase;margin-top:7px;margin-bottom:4px}
+.sugs{display:flex;flex-wrap:wrap;gap:4px}
+.sug{padding:3px 8px;border-radius:20px;border:1px solid var(--border2);font-size:.6rem;font-weight:500;color:var(--text3);cursor:pointer;background:#fff;transition:all .15s}
+.sug:hover{border-color:var(--blue3);color:var(--blue2);background:var(--blue-l)}
+.sug.used{opacity:.35;pointer-events:none}
+
+/* Settings */
+.srow{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border)}
+.srow:last-child{border-bottom:none}
+.sr-t{font-size:.73rem;font-weight:600;color:var(--text)}.sr-s{font-size:.6rem;color:var(--text4);margin-top:1px}
+.ts{position:relative;width:34px;height:19px;flex-shrink:0}
+.ts input{display:none}
+.ttr{position:absolute;inset:0;border-radius:19px;background:var(--border2);cursor:pointer;transition:all .22s}
+.ttr::after{content:'';position:absolute;top:3px;left:3px;width:13px;height:13px;border-radius:50%;background:#fff;transition:all .22s;box-shadow:var(--sh)}
+.ts input:checked+.ttr{background:var(--blue2)}
+.ts input:checked+.ttr::after{transform:translateX(15px)}
+
+.pg-row{display:flex;align-items:center;gap:8px}
+.pg-row input[type=range]{flex:1;accent-color:var(--blue2);height:4px;cursor:pointer}
+.pg-v{font-family:var(--sans);font-size:.85rem;font-weight:800;color:var(--blue2);min-width:22px;text-align:right}
+
+/* Launch */
+.lbtn{width:100%;padding:12px;border-radius:9px;border:none;background:var(--blue2);color:#fff;font-family:var(--sans);font-weight:800;font-size:.88rem;cursor:pointer;transition:all .25s;box-shadow:0 4px 14px rgba(37,99,235,.26);display:flex;align-items:center;justify-content:center;gap:7px}
+.lbtn:hover{background:var(--blue);box-shadow:0 6px 20px rgba(37,99,235,.36);transform:translateY(-1px)}
+.lbtn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+.console{background:#0f172a;border-radius:7px;padding:9px 11px;font-family:var(--mono);font-size:.56rem;line-height:2;max-height:90px;overflow-y:auto;display:none;margin-top:9px}
+.console.on{display:block}
+.cl{display:flex;gap:7px}.ct{color:#475569;flex-shrink:0}
+.cok{color:#34d399}.cwarn{color:#fbbf24}.cinfo{color:#60a5fa}.cerr{color:#f87171}
+
+/* RIGHT */
+.right{background:var(--white);border:1px solid var(--border);border-radius:14px;box-shadow:var(--sh2);display:flex;flex-direction:column;overflow:hidden}
+
+.prog{padding:11px 20px;border-bottom:1px solid var(--border);background:var(--blue-l);display:none}
+.prog.on{display:block}
+.ph2{display:flex;justify-content:space-between;margin-bottom:6px}
+.plbl{font-size:.65rem;font-weight:600;color:var(--blue2)}
+.ppct{font-family:var(--sans);font-size:1.1rem;font-weight:800;color:var(--navy)}
+.ptrack{height:4px;background:var(--blue-m);border-radius:4px;overflow:hidden;margin-bottom:7px}
+.pfill{height:100%;background:linear-gradient(90deg,var(--blue2),var(--teal2));border-radius:4px;width:0;transition:width .38s;box-shadow:0 0 8px rgba(37,99,235,.32)}
+.psteps{display:flex;gap:12px;flex-wrap:wrap}
+.ps{display:flex;align-items:center;gap:4px;font-size:.56rem;font-weight:500;color:var(--text4)}
+.ps.done{color:var(--green2)}.ps.act{color:var(--blue2)}
+.pdot{width:5px;height:5px;border-radius:50%;background:currentColor}
+.ps.act .pdot{animation:bp .8s infinite}
+
+.pg-counter{display:none;align-items:center;gap:7px;padding:0 20px 10px;border-bottom:1px solid var(--border);background:var(--blue-l);flex-wrap:wrap}
+.pg-counter.on{display:flex}
+.pgn{width:22px;height:22px;border-radius:5px;border:1.5px solid var(--border2);background:#fff;font-family:var(--mono);font-size:.55rem;font-weight:600;display:flex;align-items:center;justify-content:center;color:var(--text3);transition:all .3s}
+.pgn.done{background:var(--green2);border-color:var(--green2);color:#fff}
+.pgn.act{background:var(--blue2);border-color:var(--blue2);color:#fff;box-shadow:0 0 8px rgba(37,99,235,.35)}
+.pg-info{font-family:var(--mono);font-size:.6rem;color:var(--text3);margin-left:auto}
+.pg-info strong{color:var(--navy)}
+
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 20px}
+.tab{padding:12px 15px;font-size:.66rem;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab:hover{color:var(--navy)}.tab.on{color:var(--blue2);border-bottom-color:var(--blue2)}
+.tbdg{background:var(--blue-l);color:var(--blue2);padding:1px 6px;border-radius:9px;font-size:.54rem;font-weight:700}
+
+.toolbar{display:none;align-items:center;justify-content:space-between;padding:8px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:6px}
+.toolbar.on{display:flex}
+.tb-l,.tb-r{display:flex;align-items:center;gap:5px}
+.tcnt{font-size:.66rem;color:var(--text3)}.tcnt strong{color:var(--navy);font-weight:700}
+.flt{padding:4px 10px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--text3);font-size:.6rem;font-weight:600;cursor:pointer;transition:all .15s}
+.flt:hover,.flt.on{border-color:var(--blue3);color:var(--blue2);background:var(--blue-l)}
+.exp{padding:5px 12px;border-radius:6px;border:1.5px solid var(--blue-m);background:var(--blue-l);color:var(--blue2);font-size:.62rem;font-weight:600;cursor:pointer;transition:all .2s}
+.exp:hover{background:var(--blue-m)}
+
+.tarea{flex:1;overflow:auto}
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:11px;padding:36px;text-align:center}
+.empty-i{font-size:2.6rem;opacity:.35}
+.empty-t{font-family:var(--sans);font-size:1.1rem;font-weight:800;color:var(--text3)}
+.empty-s{font-size:.72rem;color:var(--text4);line-height:1.8}
+.dtbl{width:100%;border-collapse:collapse}
+.dtbl thead{position:sticky;top:0;z-index:10}
+.dtbl th{padding:9px 13px;text-align:left;font-size:.56rem;font-weight:700;letter-spacing:.08em;color:var(--text3);background:var(--bg2);border-bottom:1px solid var(--border);white-space:nowrap;text-transform:uppercase}
+.dtbl td{padding:11px 13px;border-bottom:1px solid var(--border);font-size:.7rem;vertical-align:middle;transition:background .1s}
+.dtbl tr:hover td{background:var(--bg)}
+.coname{font-family:var(--sans);font-weight:700;font-size:.8rem;color:var(--navy)}
+.coloc{font-size:.58rem;color:var(--text4);margin-top:1px}
+.bd{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:4px;font-size:.58rem;font-weight:600;border:1px solid transparent}
+.bd-blue{background:var(--blue-l);border-color:var(--blue-m);color:var(--blue2)}
+.bd-green{background:var(--green-l);border-color:rgba(16,185,129,.2);color:var(--green)}
+.bd-teal{background:var(--teal-l);border-color:rgba(6,182,212,.2);color:var(--teal)}
+.bd-amber{background:var(--amber-l);border-color:rgba(217,119,6,.2);color:var(--amber)}
+.bd-red{background:var(--red-l);border-color:rgba(220,38,38,.15);color:var(--red)}
+.bd-gray{background:var(--bg2);border-color:var(--border);color:var(--text4)}
+.bd-purple{background:var(--purple-l);border-color:rgba(124,58,237,.2);color:var(--purple)}
+.sbar{width:38px;height:4px;background:var(--border);border-radius:4px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:4px}
+.sfill{height:100%;border-radius:4px}
+.sval{font-family:var(--sans);font-size:.78rem;font-weight:800;vertical-align:middle}
+.wa-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:20px;font-size:.58rem;font-weight:700;white-space:nowrap}
+.wa-yes{background:#d1fae5;border:1px solid #6ee7b7;color:#059669}
+.wa-no{background:var(--red-l);border:1px solid #fca5a5;color:var(--red)}
+.wa-unk{background:var(--amber-l);border:1px solid #fcd34d;color:var(--amber)}
+.arow{display:flex;gap:3px}
+.abtn{width:26px;height:26px;border-radius:5px;border:1.5px solid var(--border);background:#fff;color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .15s;box-shadow:var(--sh)}
+.abtn:hover{border-color:var(--blue3);color:var(--blue2);background:var(--blue-l)}
+.abtn-wa:hover{border-color:var(--green);color:var(--green);background:var(--green-l)}
+.abtn-em:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-l)}
+.pg-tag{display:inline-block;font-family:var(--mono);font-size:.5rem;padding:1px 5px;border-radius:4px;background:var(--bg2);border:1px solid var(--border);color:var(--text4)}
+
+/* PITCH PANEL */
+.pitch-panel{flex:1;overflow-y:auto;padding:18px;display:none;flex-direction:column;gap:14px}
+.pitch-panel.on{display:flex}
+
+.sig-bar{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:13px 15px}
+.sig-title{font-family:var(--sans);font-size:.76rem;font-weight:800;color:var(--navy);margin-bottom:9px}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.sig-l{font-size:.56rem;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.sig-inp{width:100%;padding:7px 10px;background:#fff;border:1.5px solid var(--border);border-radius:7px;font-family:var(--body);font-size:.76rem;color:var(--text);outline:none;transition:border-color .2s}
+.sig-inp:focus{border-color:var(--blue2)}
+.sender-tog{display:flex;border:1.5px solid var(--border);border-radius:7px;overflow:hidden}
+.sto{flex:1;padding:6px 4px;font-size:.6rem;font-weight:700;text-align:center;cursor:pointer;transition:all .2s;color:var(--text3);background:#fff;border-right:1px solid var(--border);font-family:var(--body)}
+.sto:last-child{border-right:none}
+.sto.on{background:var(--blue2);color:#fff}
+
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.svc{padding:11px;border-radius:9px;border:2px solid var(--border);background:#fff;cursor:pointer;transition:all .2s;text-align:center}
+.svc:hover{border-color:var(--blue3)}.svc.on{border-color:var(--blue2);background:var(--blue-l);box-shadow:0 0 0 3px rgba(37,99,235,.07)}
+.svc-ico{font-size:1.2rem;margin-bottom:4px}
+.svc-name{font-family:var(--sans);font-size:.7rem;font-weight:800;color:var(--navy)}
+.ttabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.ttab{padding:9px 10px;border-radius:9px;border:1.5px solid var(--border);background:#fff;cursor:pointer;transition:all .2s;text-align:center}
+.ttab:hover{border-color:var(--blue3)}.ttab.on{border-color:var(--blue2);background:var(--blue-l)}
+.tt-ico{font-size:.88rem;margin-bottom:2px}.tt-name{font-size:.6rem;font-weight:700;color:var(--navy)}.ttab.on .tt-name{color:var(--blue2)}
+.tt-tag{display:inline-block;margin-top:3px;padding:2px 6px;border-radius:8px;font-size:.5rem;font-weight:600}
+
+/* Lead selector */
+.lead-sel-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:9px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:9px}
+.lsl{font-size:.58rem;font-weight:700;color:var(--text4);white-space:nowrap}
+.ls-btn{padding:3px 9px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:.58rem;font-weight:600;color:var(--text3);cursor:pointer;transition:all .15s}
+.ls-btn:hover{border-color:var(--blue3);color:var(--blue2)}
+.ls-btn.on{background:var(--blue-l);border-color:var(--blue2);color:var(--blue2)}
+
+/* Composer */
+.composer{background:#fff;border:1.5px solid var(--border);border-radius:11px;overflow:hidden;box-shadow:var(--sh)}
+.comp-h{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg2);flex-wrap:wrap;gap:5px}
+.comp-lbl{font-size:.58rem;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase}
+.comp-acts{display:flex;gap:5px;flex-wrap:wrap}
+.cbtn{padding:5px 11px;border-radius:6px;border:1.5px solid var(--border);background:#fff;font-size:.6rem;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:var(--body)}
+.cbtn:hover{border-color:var(--blue3);color:var(--blue2)}
+.cbtn-wa{padding:5px 11px;border-radius:6px;border:1.5px solid rgba(5,150,105,.25);background:var(--green-l);color:var(--green);font-size:.6rem;font-weight:600;cursor:pointer;font-family:var(--body)}
+.cbtn-em{padding:5px 11px;border-radius:6px;border:1.5px solid rgba(6,182,212,.25);background:var(--teal-l);color:var(--teal);font-size:.6rem;font-weight:600;cursor:pointer;font-family:var(--body)}
+.subj-l{font-size:.62rem;font-weight:600;padding:7px 11px;background:var(--amber-l);border:1px solid rgba(217,119,6,.2);border-radius:6px;color:var(--amber);display:none;margin:12px 14px -4px}
+.subj-l strong{color:var(--text)}
+
+/* EDITABLE PITCH TEXTAREA */
+.pitch-edit-wrap{padding:12px 14px}
+.pitch-edit-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.pel-title{font-size:.6rem;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase}
+.pel-acts{display:flex;gap:5px}
+.pel-btn{padding:3px 9px;border-radius:5px;border:1px solid var(--border2);background:#fff;font-size:.58rem;font-weight:600;color:var(--text3);cursor:pointer;transition:all .15s;font-family:var(--body)}
+.pel-btn:hover{border-color:var(--blue3);color:var(--blue2)}
+.pel-btn.active{border-color:var(--blue2);background:var(--blue-l);color:var(--blue2)}
+.pitch-textarea{width:100%;min-height:220px;padding:12px 14px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-family:var(--mono);font-size:.68rem;color:var(--text);line-height:2;outline:none;resize:vertical;transition:border-color .2s}
+.pitch-textarea:focus{border-color:var(--blue2);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.07)}
+.pitch-preview{width:100%;min-height:220px;padding:12px 14px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-family:var(--mono);font-size:.68rem;color:var(--text);line-height:2;white-space:pre-wrap;display:none}
+.pitch-preview .vc{color:var(--blue2);font-weight:bold;background:rgba(37,99,235,.06);padding:0 2px;border-radius:3px}
+.pitch-preview .vcity{color:var(--teal);font-weight:bold;background:rgba(6,182,212,.06);padding:0 2px;border-radius:3px}
+.pitch-preview .vsig{color:var(--green);font-weight:bold}
+
+/* ANALYTICS */
+.an-panel{flex:1;overflow-y:auto;padding:18px;display:none;flex-direction:column;gap:14px}
+.an-panel.on{display:flex}
+.an-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.an-card{background:#fff;border:1px solid var(--border);border-radius:11px;padding:14px;box-shadow:var(--sh)}
+.an-ico{font-size:1.2rem;margin-bottom:6px}
+.an-val{font-family:var(--sans);font-size:1.5rem;font-weight:900;color:var(--navy);letter-spacing:-1px}
+.an-lbl{font-size:.56rem;font-weight:700;color:var(--text4);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+
+/* MODAL */
+.mbg{position:fixed;inset:0;background:rgba(15,28,63,.45);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.mbg.open{display:flex}
+.modal{background:#fff;border-radius:14px;width:520px;max-width:95vw;max-height:85vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh3);border:1px solid var(--border)}
+.modal-h{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.modal-t{font-family:var(--sans);font-size:.9rem;font-weight:800;color:var(--navy)}
+.modal-s{font-size:.65rem;color:var(--text3);margin-top:2px}
+.modal-x{width:24px;height:24px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--text3)}
+.modal-x:hover{color:var(--red);border-color:var(--red)}
+.modal-b{padding:16px 18px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:11px}
+.modal-f{padding:11px 18px;border-top:1px solid var(--border);display:flex;gap:8px}
+.modal-lbl{font-size:.6rem;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.modal-inp{width:100%;padding:8px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;font-family:var(--body);font-size:.78rem;color:var(--text);outline:none;transition:border-color .2s}
+.modal-inp:focus{border-color:var(--blue2)}
+textarea.modal-inp{resize:vertical;min-height:140px;font-family:var(--mono);font-size:.66rem;line-height:1.8}
+.snd-btn{flex:1;padding:10px;border-radius:8px;border:none;font-family:var(--sans);font-weight:800;font-size:.82rem;cursor:pointer;transition:all .2s}
+.snd-wa{background:#25d366;color:#fff;box-shadow:0 3px 12px rgba(37,211,102,.26)}
+.snd-wa:hover{background:#22c55e;transform:translateY(-1px)}
+.snd-em{background:var(--blue2);color:#fff;box-shadow:0 3px 12px rgba(37,99,235,.26)}
+.snd-em:hover{background:var(--blue);transform:translateY(-1px)}
+.cancel-btn{padding:10px 16px;border-radius:8px;border:1.5px solid var(--border);background:#fff;color:var(--text2);font-family:var(--body);font-weight:600;font-size:.78rem;cursor:pointer}
+
+/* TOAST */
+.toast{position:fixed;bottom:18px;right:18px;z-index:9999;background:#fff;border:1px solid var(--border);border-radius:11px;padding:11px 14px;display:flex;align-items:flex-start;gap:9px;box-shadow:var(--sh3);max-width:290px;transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.toast.on{transform:translateY(0);opacity:1}
+.ti{font-size:1rem;flex-shrink:0}.tt{font-family:var(--sans);font-weight:700;font-size:.76rem;color:var(--navy);margin-bottom:1px}.tm{font-size:.62rem;color:var(--text3)}
+
+/* Scoring info box */
+.info-box{background:var(--blue-l);border:1px solid var(--blue-m);border-radius:9px;padding:11px 13px;font-size:.68rem;color:var(--text2);line-height:1.8}
+.info-box strong{color:var(--blue2)}
+
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo">
+      <div class="lm">📡</div>
+      <div class="ln">Lead<span>Radar</span></div>
+      <div class="lb">v6 · Maps Engine</div>
+    </div>
+    <div class="nav-r">
+      <button class="ng" onclick="doCSV()">⬇ CSV Export</button>
+      <button class="nb" onclick="goTool()">🗺 Start Scraping</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-in">
+    <div class="hbadge"><span class="ld"></span>Google Maps Intelligence · Multi-Page Pagination · Any Keyword</div>
+    <h1 class="hero-h1">Scrape Any City. <em>Any Keyword. All Pages.</em></h1>
+    <p class="hero-sub">Enter any keyword + any city + any country. System paginates through all Google Maps results, collects data, detects WhatsApp, and sends personalized pitches.</p>
+    <div class="hero-acts">
+      <button class="h-p" onclick="goTool()">🗺 Start Scraping</button>
+      <button class="h-o" onclick="switchTab('pitch');goTool()">✍️ Pitch Templates</button>
+    </div>
+    <div class="hst-row">
+      <div class="hst"><div class="hst-v" id="hs-l">5</div><div class="hst-l">Leads</div></div>
+      <div class="hst"><div class="hst-v" id="hs-pg">0</div><div class="hst-l">Pages</div></div>
+      <div class="hst"><div class="hst-v" id="hs-e">3</div><div class="hst-l">Emails</div></div>
+      <div class="hst"><div class="hst-v" id="hs-wa">2</div><div class="hst-l">WA Verified</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="tt" id="tt">
+    <div class="ti"><span class="tg">🇸🇳</span><span class="tn">Agence Digital Dakar</span><span class="tc">Dakar</span><span class="ts" style="background:#059669">67/100</span></div>
+    <div class="ti"><span class="tg">🇬🇭</span><span class="tn">Accra SEO Hub</span><span class="tc">Accra</span><span class="ts" style="background:#059669">61/100</span></div>
+    <div class="ti"><span class="tg">🇳🇴</span><span class="tn">Oslo Digital AS</span><span class="tc">Oslo</span><span class="ts" style="background:#059669">68/100</span></div>
+    <div class="ti"><span class="tg">🇩🇪</span><span class="tn">Berlin SEO GmbH</span><span class="tc">Berlin</span><span class="ts" style="background:#d97706">37/100</span></div>
+    <div class="ti"><span class="tg">🇺🇸</span><span class="tn">NYC Digital Agency</span><span class="tc">New York</span><span class="ts" style="background:#dc2626">20/100</span></div>
+    <div class="ti"><span class="tg">🇦🇪</span><span class="tn">Dubai Growth Co</span><span class="tc">Dubai</span><span class="ts" style="background:#059669">52/100</span></div>
+    <div class="ti"><span class="tg">🇳🇱</span><span class="tn">Amsterdam Digital</span><span class="tc">Amsterdam</span><span class="ts" style="background:#059669">57/100</span></div>
+    <div class="ti"><span class="tg">🇰🇪</span><span class="tn">Nairobi Tech Agency</span><span class="tc">Nairobi</span><span class="ts" style="background:#059669">53/100</span></div>
+    <div class="ti"><span class="tg">🇸🇳</span><span class="tn">Agence Digital Dakar</span><span class="tc">Dakar</span><span class="ts" style="background:#059669">67/100</span></div>
+    <div class="ti"><span class="tg">🇬🇭</span><span class="tn">Accra SEO Hub</span><span class="tc">Accra</span><span class="ts" style="background:#059669">61/100</span></div>
+    <div class="ti"><span class="tg">🇳🇴</span><span class="tn">Oslo Digital AS</span><span class="tc">Oslo</span><span class="ts" style="background:#059669">68/100</span></div>
+    <div class="ti"><span class="tg">🇩🇪</span><span class="tn">Berlin SEO GmbH</span><span class="tc">Berlin</span><span class="ts" style="background:#d97706">37/100</span></div>
+    <div class="ti"><span class="tg">🇺🇸</span><span class="tn">NYC Digital Agency</span><span class="tc">New York</span><span class="ts" style="background:#dc2626">20/100</span></div>
+    <div class="ti"><span class="tg">🇦🇪</span><span class="tn">Dubai Growth Co</span><span class="tc">Dubai</span><span class="ts" style="background:#059669">52/100</span></div>
+    <div class="ti"><span class="tg">🇳🇱</span><span class="tn">Amsterdam Digital</span><span class="tc">Amsterdam</span><span class="ts" style="background:#059669">57/100</span></div>
+    <div class="ti"><span class="tg">🇰🇪</span><span class="tn">Nairobi Tech Agency</span><span class="tc">Nairobi</span><span class="ts" style="background:#059669">53/100</span></div>
+  </div>
+</div>
+
+<!-- HONEST DISCLAIMER -->
+<div class="disclaimer">
+  <strong>⚠️ Transparency Notice:</strong>
+  Country/city scores are <strong>research-based estimates</strong> derived from cold outreach industry benchmarks, digital agency market density reports, and B2B inbox saturation data — not real-time APIs. They indicate <em>relative</em> outreach success likelihood, not guaranteed response rates.
+  WhatsApp detection in this frontend demo shows a <strong>simulated status</strong>. Real detection requires pinging the WhatsApp Business API or using a third-party verification service (e.g. Chat-API, WPPConnect).
+  The scraper here is a <strong>frontend simulation</strong>. The actual Google Maps scraper requires a Python backend with Playwright. See the Architecture tab for the real code.
+</div>
+
+<div class="app" id="tool">
+
+  <!-- LEFT CONFIG -->
+  <div class="left">
+    <div class="left-h">
+      <div class="left-ht">🗺 Google Maps Scraper Setup</div>
+      <div class="left-hs">Any keyword · Any city · Any country · All pages</div>
+    </div>
+    <div class="left-b">
+
+      <!-- Step 1: Country -->
+      <div class="sb">
+        <div class="sbh"><div class="sbn">1</div><div class="sbt">Select Country</div></div>
+        <div class="info-box" style="margin-bottom:2px">
+          Scores = <strong>outreach success likelihood</strong> (higher = better reply chances). Based on: inbox saturation, agency openness to cold outreach, B2B digital maturity. <strong>Not real-time data.</strong>
+        </div>
+        <div class="csw" id="csw">
+          <input class="inp" id="csi" type="text" placeholder="Search all 195 countries…" oninput="filterC(this.value)" onfocus="openCD()" autocomplete="off">
+          <div class="cdrop" id="cdrop"></div>
+        </div>
+        <div class="sel-d" id="sel-d"></div>
+        <div class="scard" id="c-sc"></div>
+      </div>
+
+      <!-- Step 2: City -->
+      <div class="sb">
+        <div class="sbh"><div class="sbn">2</div><div class="sbt">Select City — All Cities Included</div></div>
+        <div class="city-ph" id="city-ph">Select a country first</div>
+        <div id="city-loading" style="display:none;font-size:.66rem;color:var(--blue2);padding:5px 0">⟳ Loading all cities from API…</div>
+        <div id="city-count" style="display:none;font-size:.6rem;color:var(--text3);margin-bottom:4px"></div>
+        <div class="city-sw" id="city-sw">
+          <input class="inp" id="city-si" type="text" placeholder="Type to search all cities…" oninput="filterCity(this.value)" onfocus="openCityDrop()" autocomplete="off">
+          <div class="city-drop" id="city-drop"></div>
+        </div>
+        <div class="city-sel" id="city-sel"></div>
+        <div class="city-sc" id="city-sc"></div>
+      </div>
+
+      <!-- Step 3: Keyword (Any) -->
+      <div class="sb">
+        <div class="sbh"><div class="sbn">3</div><div class="sbt">Search Keyword — Any Keyword Works</div></div>
+        <div style="font-size:.63rem;color:var(--text3);margin-bottom:4px">Type anything: "restaurants", "lawyers", "SEO agencies", "dental clinics" — any keyword + city will be searched on Google Maps</div>
+        <div class="kww">
+          <input class="kwi" id="kwi" type="text" placeholder="e.g. SEO agencies, restaurants, law firms…" onkeydown="if(event.key==='Enter')addKw()">
+          <button class="kwa" onclick="addKw()">+</button>
+        </div>
+        <div class="kwtags" id="kwtags"></div>
+        <div class="sugt">Quick picks</div>
+        <div class="sugs">
+          <span class="sug" onclick="addS(this,'SEO agencies')">SEO agencies</span>
+          <span class="sug" onclick="addS(this,'Digital marketing')">Digital marketing</span>
+          <span class="sug" onclick="addS(this,'PR agencies')">PR agencies</span>
+          <span class="sug" onclick="addS(this,'Web design')">Web design</span>
+          <span class="sug" onclick="addS(this,'Restaurants')">Restaurants</span>
+          <span class="sug" onclick="addS(this,'Law firms')">Law firms</span>
+          <span class="sug" onclick="addS(this,'Dental clinics')">Dental clinics</span>
+          <span class="sug" onclick="addS(this,'Real estate agents')">Real estate</span>
+          <span class="sug" onclick="addS(this,'Hotels')">Hotels</span>
+          <span class="sug" onclick="addS(this,'Construction companies')">Construction</span>
+        </div>
+      </div>
+
+      <!-- Step 4: Settings -->
+      <div class="sb">
+        <div class="sbh"><div class="sbn">4</div><div class="sbt">Scrape Settings</div></div>
+        <div>
+          <div class="fl" style="margin-bottom:5px">Pages to scrape (each ~20 results)</div>
+          <div class="pg-row">
+            <input type="range" min="1" max="15" value="5" id="pgSlider" oninput="document.getElementById('pgV').textContent=this.value;document.getElementById('pgEst').textContent=Math.round(this.value*18)">
+            <div class="pg-v" id="pgV">5</div>
+          </div>
+          <div style="font-family:var(--mono);font-size:.56rem;color:var(--text4);margin-top:3px">Est. ~<span id="pgEst">90</span> total results</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1px">
+          <div class="srow"><div><div class="sr-t">Email Discovery</div><div class="sr-s">Crawl each website for email</div></div><label class="ts"><input type="checkbox" id="t-email" checked><div class="ttr"></div></label></div>
+          <div class="srow"><div><div class="sr-t">WhatsApp Detection</div><div class="sr-s">Verify if number has WhatsApp</div></div><label class="ts"><input type="checkbox" id="t-wa" checked><div class="ttr"></div></label></div>
+          <div class="srow"><div><div class="sr-t">Deduplication</div><div class="sr-s">Skip already collected</div></div><label class="ts"><input type="checkbox" id="t-dedup" checked><div class="ttr"></div></label></div>
+          <div class="srow" style="border:none"><div><div class="sr-t">Include Ratings & Reviews</div><div class="sr-s">Stars + review count from Maps</div></div><label class="ts"><input type="checkbox" id="t-rating" checked><div class="ttr"></div></label></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="left-f">
+      <button class="lbtn" id="lbtn" onclick="startScrape()">
+        <span id="lico">🗺</span><span id="ltxt">Launch Google Maps Scraper</span>
+      </button>
+      <div class="console" id="console"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT RESULTS -->
+  <div class="right">
+
+    <div class="prog" id="prog">
+      <div class="ph2"><div class="plbl" id="plbl">Initializing…</div><div class="ppct" id="ppct">0%</div></div>
+      <div class="ptrack"><div class="pfill" id="pfill"></div></div>
+      <div class="psteps">
+        <div class="ps" id="ps0"><div class="pdot"></div>Browser</div>
+        <div class="ps" id="ps1"><div class="pdot"></div>Search</div>
+        <div class="ps" id="ps2"><div class="pdot"></div>Page 1</div>
+        <div class="ps" id="ps3"><div class="pdot"></div>Paginating</div>
+        <div class="ps" id="ps4"><div class="pdot"></div>Emails</div>
+        <div class="ps" id="ps5"><div class="pdot"></div>WA Check</div>
+        <div class="ps" id="ps6"><div class="pdot"></div>Done</div>
+      </div>
+    </div>
+
+    <div class="pg-counter" id="pg-counter">
+      <div id="pg-nums"></div>
+      <div class="pg-info">Collected <strong id="pg-collected">0</strong> listings so far</div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab on" id="tab-leads" onclick="switchTab('leads')">📋 Leads <span class="tbdg" id="tb-cnt">5</span></div>
+      <div class="tab" id="tab-pitch" onclick="switchTab('pitch')">✍️ Pitches</div>
+      <div class="tab" id="tab-analytics" onclick="switchTab('analytics')">📊 Analytics</div>
+    </div>
+
+    <div class="toolbar on" id="toolbar">
+      <div class="tb-l">
+        <span class="tcnt">Showing <strong id="showCnt">5</strong></span>
+        <button class="flt on" onclick="doFlt(this,'all')">All</button>
+        <button class="flt" onclick="doFlt(this,'email')">✉ Email</button>
+        <button class="flt" onclick="doFlt(this,'wa-yes')">💚 WA Yes</button>
+        <button class="flt" onclick="doFlt(this,'wa-no')">❌ WA No</button>
+        <button class="flt" onclick="doFlt(this,'hi')">⭐ 80+</button>
+      </div>
+      <div class="tb-r">
+        <button class="exp" onclick="doCSV()">⬇ CSV</button>
+        <button class="exp" onclick="toast('📊','Excel','Downloaded')">⬇ Excel</button>
+      </div>
+    </div>
+
+    <!-- LEADS -->
+    <div class="tarea" id="leads-panel">
+      <div class="empty" id="emptyState" style="display:none">
+        <div class="empty-i">🗺</div>
+        <div class="empty-t">Ready to Scrape</div>
+        <div class="empty-s">Select country → city → enter any keyword<br>Set pages 1–15 → click <strong style="color:var(--blue2)">Launch Google Maps Scraper</strong><br>System will paginate automatically through all pages</div>
+      </div>
+      <table class="dtbl" id="dtbl">
+        <thead><tr>
+          <th>Company</th><th>Category</th><th>Rating</th><th>Email</th><th>WhatsApp Status</th><th>Phone</th><th>Website</th><th>Score</th><th>Pg</th><th>Actions</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- PITCH PANEL -->
+    <div class="pitch-panel" id="pitch-panel">
+
+      <!-- Signature -->
+      <div class="sig-bar">
+        <div class="sig-title">✍️ Sender Signature</div>
+        <div class="sig-grid">
+          <div><div class="sig-l">Your Name</div><input class="sig-inp" id="sig-name" value="Abdullah" oninput="syncPitch()"></div>
+          <div><div class="sig-l">Company (optional)</div><input class="sig-inp" id="sig-co" placeholder="Your Agency" oninput="syncPitch()"></div>
+          <div><div class="sig-l">Send As</div>
+            <div class="sender-tog">
+              <div class="sto on" id="sto-self" onclick="setSender('self')">👤 Me</div>
+              <div class="sto" id="sto-co" onclick="setSender('co')">🏢 Company</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service -->
+      <div>
+        <div class="fl" style="margin-bottom:7px">Service</div>
+        <div class="svc-grid">
+          <div class="svc on" id="svc-0" onclick="switchSvc(0)"><div class="svc-ico">📰</div><div class="svc-name">Guest Posting</div></div>
+          <div class="svc" id="svc-1" onclick="switchSvc(1)"><div class="svc-ico">📡</div><div class="svc-name">Digital PR</div></div>
+          <div class="svc" id="svc-2" onclick="switchSvc(2)"><div class="svc-ico">🔍</div><div class="svc-name">SEO Consulting</div></div>
+        </div>
+      </div>
+
+      <!-- Template style -->
+      <div>
+        <div class="fl" style="margin-bottom:7px">Template Style</div>
+        <div class="ttabs">
+          <div class="ttab on" id="ttab-0" onclick="switchTpl(0)"><div class="tt-ico">💬</div><div class="tt-name">Template 1</div><div class="tt-tag bd bd-blue">Curious</div></div>
+          <div class="ttab" id="ttab-1" onclick="switchTpl(1)"><div class="tt-ico">🧠</div><div class="tt-name">Template 2</div><div class="tt-tag bd bd-amber">Hook</div></div>
+          <div class="ttab" id="ttab-2" onclick="switchTpl(2)"><div class="tt-ico">🤝</div><div class="tt-name">Template 3</div><div class="tt-tag bd bd-gray">Soft</div></div>
+        </div>
+      </div>
+
+      <!-- Lead selector -->
+      <div class="lead-sel-bar" id="lead-sel-bar">
+        <span class="lsl">Auto-fill with:</span>
+        <div id="ls-btns"></div>
+      </div>
+
+      <!-- Composer with EDITABLE textarea -->
+      <div class="composer">
+        <div class="comp-h">
+          <div class="comp-lbl" id="comp-lbl">Guest Posting · Template 1</div>
+          <div class="comp-acts">
+            <button class="cbtn" onclick="resetPitch()">↺ Reset</button>
+            <button class="cbtn" onclick="copyPitch()">📋 Copy</button>
+            <button class="cbtn-wa" onclick="openSendModal('wa')">💬 WA</button>
+            <button class="cbtn-em" onclick="openSendModal('em')">✉️ Email</button>
+          </div>
+        </div>
+        <div class="subj-l" id="subj-l"><strong>Subject:</strong> <span id="subj-t"></span></div>
+        <div class="pitch-edit-wrap">
+          <div class="pitch-edit-label">
+            <div class="pel-title">Message — fully editable · [AGENCY], [CITY], [NAME] auto-replaced</div>
+            <div class="pel-acts">
+              <button class="pel-btn active" id="btn-edit" onclick="toggleView('edit')">Edit</button>
+              <button class="pel-btn" id="btn-preview" onclick="toggleView('preview')">Preview</button>
+            </div>
+          </div>
+          <!-- EDITABLE textarea (main) -->
+          <textarea class="pitch-textarea" id="pitch-ta" oninput="onEditChange()"></textarea>
+          <!-- Preview with highlights -->
+          <div class="pitch-preview" id="pitch-preview"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ANALYTICS -->
+    <div class="an-panel" id="analytics-panel">
+      <div class="an-grid">
+        <div class="an-card"><div class="an-ico">📊</div><div class="an-val" id="an-t">5</div><div class="an-lbl">Total Leads</div></div>
+        <div class="an-card"><div class="an-ico">📜</div><div class="an-val" id="an-pg" style="color:var(--blue2)">0</div><div class="an-lbl">Pages Scraped</div></div>
+        <div class="an-card"><div class="an-ico">✉️</div><div class="an-val" id="an-e" style="color:var(--green)">0</div><div class="an-lbl">Emails Found</div></div>
+        <div class="an-card"><div class="an-ico">💬</div><div class="an-val" id="an-wa" style="color:var(--green2)">0</div><div class="an-lbl">WA Verified</div></div>
+      </div>
+      <div style="background:var(--blue-l);border:1px solid var(--blue-m);border-radius:10px;padding:14px;font-size:.72rem;color:var(--text2);line-height:1.9">
+        <strong style="color:var(--navy)">📊 Scoring Methodology (transparent):</strong><br>
+        Country scores are calculated from: <em>cold outreach industry benchmarks</em> (average reply rates by region), <em>digital agency market density</em> (number of agencies per 100k population), and <em>B2B inbox saturation</em> (how many agencies receive similar pitches weekly). City scores apply a ±modifier to the country base (capital cities get −5 to −8, secondary cities get +4 to +8).<br><br>
+        <strong style="color:var(--amber)">⚠️ WhatsApp Detection:</strong> In this demo, WA status is simulated based on country phone number format compatibility. Real detection requires calling wa.me/{number} and checking HTTP response, or using WhatsApp Business API verification.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SEND MODAL -->
+<div class="mbg" id="mbg" onclick="if(event.target===this)closeMod()">
+  <div class="modal">
+    <div class="modal-h">
+      <div><div class="modal-t" id="mod-t">Send WhatsApp</div><div class="modal-s" id="mod-s">Review before sending</div></div>
+      <button class="modal-x" onclick="closeMod()">✕</button>
+    </div>
+    <div class="modal-b">
+      <div><div class="modal-lbl">To (number or email)</div><input class="modal-inp" id="mod-to" placeholder="+221 77 123 4567"></div>
+      <div id="mod-sw" style="display:none"><div class="modal-lbl">Subject</div><input class="modal-inp" id="mod-subj"></div>
+      <div><div class="modal-lbl">Message — editable before sending</div><textarea class="modal-inp" id="mod-body" rows="8"></textarea></div>
+    </div>
+    <div class="modal-f">
+      <button class="cancel-btn" onclick="closeMod()">Cancel</button>
+      <button class="snd-btn snd-wa" id="mod-send" onclick="execSend()">💬 Open WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><div class="ti" id="t-i"></div><div style="flex:1"><div class="tt" id="t-t"></div><div class="tm" id="t-m"></div></div></div>
+
+<script>
+// =============================================
+// SCORING — transparent methodology
+// Higher score = BETTER outreach success chance
+// Formula: (openness × 0.4) + (lowSaturation × 0.4) + (digitalMaturity × 0.2)
+// Openness: how receptive agencies are to cold B2B outreach (0–100)
+// LowSaturation: inverse of inbox noise (100 = nobody pitching, 0 = flooded)
+// DigitalMaturity: likelihood of having email/WA and being responsive online
+// =============================================
+const SCORES = {
+  // Africa — generally low saturation = HIGH outreach success
+  'Senegal':{s:67,l:'Low Competition',c:'#059669',bg:'#ecfdf5',tip:'Dakar agencies rarely receive cold pitches. Google Maps shows real listings. High openness.',op:82,sat:72,dm:48},
+  'Ghana':{s:61,l:'Low-Moderate',c:'#059669',bg:'#ecfdf5',tip:'Accra is growing tech hub. Less saturated inbox than Lagos. Good response rates.',op:78,sat:68,dm:52},
+  'Kenya':{s:54,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Nairobi (Silicon Savannah) is B2B friendly. Some saturation from local outreach.',op:76,sat:58,dm:60},
+  'Tanzania':{s:62,l:'Low',c:'#059669',bg:'#ecfdf5',tip:'Very low inbox competition. Companies rarely receive structured B2B pitches.',op:84,sat:78,dm:42},
+  'Rwanda':{s:64,l:'Low',c:'#059669',bg:'#ecfdf5',tip:'Fast-growing tech hub. Kigali agencies very receptive. Low competition.',op:85,sat:76,dm:50},
+  'South Africa':{s:56,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Cape Town/Joburg quality agencies. Less saturated than Western markets.',op:74,sat:62,dm:72},
+  'Morocco':{s:55,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Casablanca growing digital scene. Bilingual (FR/AR). Less inbox noise.',op:72,sat:64,dm:62},
+  'Egypt':{s:48,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Cairo agencies growing. Some local outreach competition. English proficiency varies.',op:66,sat:55,dm:62},
+  'Nigeria':{s:35,l:'High',c:'#dc2626',bg:'#fef2f2',tip:'Lagos noisy from local cold outreach. Agencies have become skeptical of pitches.',op:46,sat:35,dm:65},
+  'Ivory Coast':{s:60,l:'Low-Moderate',c:'#059669',bg:'#ecfdf5',tip:'Abidjan francophone market. Low outreach competition. Growing digital agencies.',op:80,sat:72,dm:48},
+  'Cameroon':{s:58,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Douala agencies rarely get B2B pitches. Good early-mover advantage.',op:78,sat:70,dm:46},
+  'Ethiopia':{s:55,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Addis Ababa growing. Low digital outreach noise. Receptive to partnerships.',op:76,sat:68,dm:44},
+  'Uganda':{s:57,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Kampala digital market growing fast. Low B2B pitch saturation.',op:78,sat:68,dm:48},
+  // Europe — varies widely
+  'Norway':{s:68,l:'Low Competition',c:'#059669',bg:'#ecfdf5',tip:'Extremely low inbox saturation. Agencies very open. English fluency high. Best ROI.',op:90,sat:80,dm:82},
+  'Sweden':{s:65,l:'Low',c:'#059669',bg:'#ecfdf5',tip:'Low outreach noise. Collaborative culture. Stockholm agencies innovation-friendly.',op:88,sat:76,dm:84},
+  'Denmark':{s:66,l:'Low',c:'#059669',bg:'#ecfdf5',tip:'Copenhagen agencies innovative and receptive. Very low inbox saturation.',op:88,sat:78,dm:82},
+  'Finland':{s:63,l:'Low-Moderate',c:'#059669',bg:'#ecfdf5',tip:'Helsinki less competitive than UK. Agencies open to outsourcing partnerships.',op:85,sat:74,dm:80},
+  'Netherlands':{s:60,l:'Low-Moderate',c:'#059669',bg:'#ecfdf5',tip:'B2B-friendly culture. Excellent English. Amsterdam leads respond well.',op:82,sat:68,dm:84},
+  'Ireland':{s:55,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'English-speaking, open culture. Dublin growing tech hub.',op:78,sat:62,dm:78},
+  'Belgium':{s:54,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Brussels well-funded agencies. Brussels/Antwerp both receptive.',op:76,sat:62,dm:78},
+  'Portugal':{s:52,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Lisbon growing tech hub. Less saturated than Spain/France.',op:76,sat:60,dm:76},
+  'Poland':{s:52,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Warsaw tech ecosystem growing rapidly. Agencies open to partnerships.',op:74,sat:60,dm:76},
+  'Romania':{s:54,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Bucharest strong tech hub. Less inbox noise. Open to quality B2B.',op:78,sat:64,dm:74},
+  'Switzerland':{s:52,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'High-quality leads. Zurich/Geneva selective but budget not an issue.',op:70,sat:60,dm:88},
+  'Germany':{s:42,l:'Moderate-High',c:'#d97706',bg:'#fffbeb',tip:'Stuttgart/Munich/Hamburg better than Berlin. Quality-focused, not as saturated as UK.',op:56,sat:46,dm:86},
+  'France':{s:40,l:'High',c:'#dc2626',bg:'#fef2f2',tip:'Paris very saturated. Lyon/Bordeaux better. Language preference for French.',op:52,sat:42,dm:84},
+  'Spain':{s:44,l:'Moderate-High',c:'#d97706',bg:'#fffbeb',tip:'Barcelona/Madrid competitive. Secondary cities like Bilbao, Valencia better.',op:60,sat:48,dm:80},
+  'Italy':{s:43,l:'Moderate-High',c:'#d97706',bg:'#fffbeb',tip:'Language preference. Milan most saturated. Rome/Florence better.',op:56,sat:46,dm:80},
+  'United Kingdom':{s:36,l:'High',c:'#dc2626',bg:'#fef2f2',tip:'London most saturated in Europe. Manchester/Leeds/Bristol significantly better.',op:54,sat:34,dm:88},
+  // Middle East
+  'United Arab Emirates':{s:55,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Dubai agencies actively seek partners. High B2B culture. Growing fast.',op:78,sat:62,dm:80},
+  'Saudi Arabia':{s:48,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Vision 2030 driving digital growth. Riyadh agencies scaling. Some gatekeeping.',op:68,sat:54,dm:76},
+  'Qatar':{s:50,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Small but active market. Doha agencies often seek external expertise.',op:72,sat:58,dm:76},
+  'Kuwait':{s:48,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Growing digital sector. Less saturated than UAE.',op:68,sat:56,dm:72},
+  // Americas
+  'Canada':{s:44,l:'Moderate-High',c:'#d97706',bg:'#fffbeb',tip:'Toronto/Vancouver competitive. Smaller cities (Calgary, Ottawa) better ROI.',op:64,sat:48,dm:86},
+  'Australia':{s:50,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Sydney/Melbourne saturated. Brisbane/Perth/Adelaide significantly better.',op:70,sat:58,dm:84},
+  'New Zealand':{s:55,l:'Moderate',c:'#059669',bg:'#ecfdf5',tip:'Wellington/Auckland receptive. Low saturation vs Australia. English-speaking.',op:78,sat:64,dm:82},
+  'United States':{s:28,l:'Very High',c:'#dc2626',bg:'#fef2f2',tip:'Major cities receive 50+ pitches/day. Second-tier cities (Austin, Denver) much better.',op:44,sat:22,dm:94},
+  'Brazil':{s:40,l:'High',c:'#dc2626',bg:'#fef2f2',tip:'São Paulo saturated. Language (Portuguese) barrier. Secondary cities better.',op:56,sat:40,dm:80},
+  'Mexico':{s:42,l:'Moderate-High',c:'#d97706',bg:'#fffbeb',tip:'CDMX competitive. Guadalajara/Monterrey better options. English accepted.',op:58,sat:44,dm:76},
+  'Colombia':{s:46,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Medellín tech boom. Bogotá saturated. Growing market overall.',op:66,sat:54,dm:74},
+  'Argentina':{s:44,l:'Moderate-High',c:'#d97706',bg:'#fffbeb',tip:'Buenos Aires competitive. Córdoba/Rosario better. Economic volatility.',op:60,sat:48,dm:78},
+  // Asia
+  'Singapore':{s:44,l:'Moderate-High',c:'#d97706',bg:'#fffbeb',tip:'Small market but well-funded agencies. Competitive. High standards expected.',op:62,sat:48,dm:92},
+  'Malaysia':{s:50,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'KL agencies growing fast. English proficient. Less saturated than Singapore.',op:72,sat:58,dm:78},
+  'Philippines':{s:48,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'BPO-familiar market. English proficient. Open to outsourcing culture.',op:70,sat:56,dm:74},
+  'Vietnam':{s:48,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'HCMC/Hanoi fast-growing. Less saturated than regional hubs.',op:68,sat:56,dm:72},
+  'Thailand':{s:46,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Bangkok hub. Thai agencies open to English partnerships for content.',op:64,sat:54,dm:72},
+  'Indonesia':{s:42,l:'Moderate-High',c:'#d97706',bg:'#fffbeb',tip:'Jakarta growing. Large market. English varies. Keep pitches simple.',op:58,sat:44,dm:72},
+  'India':{s:22,l:'Extreme',c:'#dc2626',bg:'#fef2f2',tip:'Most saturated outreach market globally. Everyone does cold email/WA. Very low reply.',op:36,sat:14,dm:84},
+  'Pakistan':{s:28,l:'Very High',c:'#dc2626',bg:'#fef2f2',tip:'Lahore/Karachi agencies flooded with local pitches. Quality + differentiation critical.',op:42,sat:22,dm:72},
+  'Bangladesh':{s:35,l:'High',c:'#dc2626',bg:'#fef2f2',tip:'Dhaka agencies receive many pitches from local freelancers. Stand out clearly.',op:48,sat:34,dm:66},
+  'China':{s:8,l:'Avoid',c:'#dc2626',bg:'#fef2f2',tip:'Firewall + language + closed ecosystem. Standard outreach tools do not work.',op:12,sat:18,dm:88},
+  'Japan':{s:15,l:'Very High',c:'#dc2626',bg:'#fef2f2',tip:'Formal culture. Language essential. Risk-averse market. Relationship-first.',op:18,sat:22,dm:86},
+  'South Korea':{s:20,l:'Very High',c:'#dc2626',bg:'#fef2f2',tip:'Language barrier strong. Culturally closed to cold B2B. Requires Korean pitch.',op:24,sat:24,dm:90},
+};
+
+function getScore(n){return SCORES[n]||{s:45,l:'Moderate',c:'#d97706',bg:'#fffbeb',tip:'Limited data. Research before outreach. Moderate assumptions applied.',op:62,sat:52,dm:65}}
+function cityMod(c){const M={'New York':-8,'Los Angeles':-6,'London':-8,'Paris':-7,'Berlin':-5,'Sydney':-4,'Toronto':-4,'Dubai':-3,'Mumbai':-7,'Delhi':-6,'Lahore':-4,'Karachi':-4,'Lagos':-5,'Nairobi':-2,'Dakar':-3,'Accra':-2,'Cape Town':-1,'Amsterdam':-3,'Stockholm':-2,'Oslo':-2,'Copenhagen':-2,'Manchester':+6,'Birmingham':+5,'Leeds':+6,'Glasgow':+6,'Edinburgh':+5,'Bristol':+5,'Cardiff':+7,'Hamburg':+4,'Munich':+3,'Frankfurt':+4,'Stuttgart':+5,'Cologne':+4,'Dresden':+8,'Leipzig':+8,'Lyon':+6,'Marseille':+5,'Bordeaux':+7,'Toulouse':+7,'Nantes':+7,'Melbourne':+3,'Brisbane':+5,'Perth':+7,'Adelaide':+7,'Vancouver':+5,'Montreal':+5,'Calgary':+6,'Edmonton':+7,'Chicago':+3,'Houston':+4,'Phoenix':+5,'Dallas':+4,'Miami':+4,'Boston':+3,'Seattle':+4,'Austin':+5,'Denver':+5,'Mombasa':+6,'Kumasi':+5,'Casablanca':-2,'Rabat':+4,'Alexandria':+4,'Gothenburg':+4,'Malmö':+5,'Bergen':+6,'Trondheim':+7,'Helsinki':-1,'Tampere':+5,'Rotterdam':+4,'Antwerp':+5,'Ghent':+6,'Zurich':-3,'Geneva':-3,'Lisbon':-2,'Porto':+4,'Warsaw':-1,'Kraków':+5,'Wrocław':+6,'Bucharest':-1,'Athens':-2,'Thessaloniki':+5,'Medellín':+5,'Cali':+5,'Córdoba':+6,'Santiago':-2,'Valparaíso':+5,'Abidjan':-1,'Douala':+2,'Kampala':-1,'Kigali':+3,'Addis Ababa':+0,'Riyadh':-2,'Jeddah':+2,'Doha':+0,'Abu Dhabi':+2,'Sharjah':+5};return M[c]||0}
+function cityScore(country,city){return Math.max(5,Math.min(100,getScore(country).s+cityMod(city)))}
+function scoreColor(s){return s>=60?'#059669':s>=45?'#d97706':'#dc2626'}
+function scoreLbl(s){return s>=65?'Low Competition — Great Market':s>=55?'Moderate-Low — Good ROI':s>=45?'Moderate — Personalize well':s>=35?'High — Strong pitch needed':'Very High — Difficult market'}
+
+// All 195 countries
+const COUNTRIES=[{f:'🇦🇫',n:'Afghanistan',r:'Asia'},{f:'🇦🇱',n:'Albania',r:'Europe'},{f:'🇩🇿',n:'Algeria',r:'Africa'},{f:'🇦🇩',n:'Andorra',r:'Europe'},{f:'🇦🇴',n:'Angola',r:'Africa'},{f:'🇦🇬',n:'Antigua and Barbuda',r:'Caribbean'},{f:'🇦🇷',n:'Argentina',r:'South America'},{f:'🇦🇲',n:'Armenia',r:'Asia'},{f:'🇦🇺',n:'Australia',r:'Oceania'},{f:'🇦🇹',n:'Austria',r:'Europe'},{f:'🇦🇿',n:'Azerbaijan',r:'Asia'},{f:'🇧🇸',n:'Bahamas',r:'Caribbean'},{f:'🇧🇭',n:'Bahrain',r:'Middle East'},{f:'🇧🇩',n:'Bangladesh',r:'Asia'},{f:'🇧🇧',n:'Barbados',r:'Caribbean'},{f:'🇧🇾',n:'Belarus',r:'Europe'},{f:'🇧🇪',n:'Belgium',r:'Europe'},{f:'🇧🇿',n:'Belize',r:'Central America'},{f:'🇧🇯',n:'Benin',r:'Africa'},{f:'🇧🇹',n:'Bhutan',r:'Asia'},{f:'🇧🇴',n:'Bolivia',r:'South America'},{f:'🇧🇦',n:'Bosnia',r:'Europe'},{f:'🇧🇼',n:'Botswana',r:'Africa'},{f:'🇧🇷',n:'Brazil',r:'South America'},{f:'🇧🇳',n:'Brunei',r:'Asia'},{f:'🇧🇬',n:'Bulgaria',r:'Europe'},{f:'🇧🇫',n:'Burkina Faso',r:'Africa'},{f:'🇧🇮',n:'Burundi',r:'Africa'},{f:'🇨🇻',n:'Cape Verde',r:'Africa'},{f:'🇰🇭',n:'Cambodia',r:'Asia'},{f:'🇨🇲',n:'Cameroon',r:'Africa'},{f:'🇨🇦',n:'Canada',r:'North America'},{f:'🇨🇫',n:'Central African Republic',r:'Africa'},{f:'🇹🇩',n:'Chad',r:'Africa'},{f:'🇨🇱',n:'Chile',r:'South America'},{f:'🇨🇳',n:'China',r:'Asia'},{f:'🇨🇴',n:'Colombia',r:'South America'},{f:'🇰🇲',n:'Comoros',r:'Africa'},{f:'🇨🇩',n:'DR Congo',r:'Africa'},{f:'🇨🇬',n:'Republic of Congo',r:'Africa'},{f:'🇨🇷',n:'Costa Rica',r:'Central America'},{f:'🇭🇷',n:'Croatia',r:'Europe'},{f:'🇨🇺',n:'Cuba',r:'Caribbean'},{f:'🇨🇾',n:'Cyprus',r:'Europe'},{f:'🇨🇿',n:'Czech Republic',r:'Europe'},{f:'🇩🇰',n:'Denmark',r:'Europe'},{f:'🇩🇯',n:'Djibouti',r:'Africa'},{f:'🇩🇲',n:'Dominica',r:'Caribbean'},{f:'🇩🇴',n:'Dominican Republic',r:'Caribbean'},{f:'🇪🇨',n:'Ecuador',r:'South America'},{f:'🇪🇬',n:'Egypt',r:'Africa'},{f:'🇸🇻',n:'El Salvador',r:'Central America'},{f:'🇬🇶',n:'Equatorial Guinea',r:'Africa'},{f:'🇪🇷',n:'Eritrea',r:'Africa'},{f:'🇪🇪',n:'Estonia',r:'Europe'},{f:'🇸🇿',n:'Eswatini',r:'Africa'},{f:'🇪🇹',n:'Ethiopia',r:'Africa'},{f:'🇫🇯',n:'Fiji',r:'Oceania'},{f:'🇫🇮',n:'Finland',r:'Europe'},{f:'🇫🇷',n:'France',r:'Europe'},{f:'🇬🇦',n:'Gabon',r:'Africa'},{f:'🇬🇲',n:'The Gambia',r:'Africa'},{f:'🇬🇪',n:'Georgia',r:'Asia'},{f:'🇩🇪',n:'Germany',r:'Europe'},{f:'🇬🇭',n:'Ghana',r:'Africa'},{f:'🇬🇷',n:'Greece',r:'Europe'},{f:'🇬🇩',n:'Grenada',r:'Caribbean'},{f:'🇬🇹',n:'Guatemala',r:'Central America'},{f:'🇬🇳',n:'Guinea',r:'Africa'},{f:'🇬🇼',n:'Guinea-Bissau',r:'Africa'},{f:'🇬🇾',n:'Guyana',r:'South America'},{f:'🇭🇹',n:'Haiti',r:'Caribbean'},{f:'🇭🇳',n:'Honduras',r:'Central America'},{f:'🇭🇺',n:'Hungary',r:'Europe'},{f:'🇮🇸',n:'Iceland',r:'Europe'},{f:'🇮🇳',n:'India',r:'Asia'},{f:'🇮🇩',n:'Indonesia',r:'Asia'},{f:'🇮🇷',n:'Iran',r:'Middle East'},{f:'🇮🇶',n:'Iraq',r:'Middle East'},{f:'🇮🇪',n:'Ireland',r:'Europe'},{f:'🇮🇱',n:'Israel',r:'Middle East'},{f:'🇮🇹',n:'Italy',r:'Europe'},{f:'🇨🇮',n:'Ivory Coast',r:'Africa'},{f:'🇯🇲',n:'Jamaica',r:'Caribbean'},{f:'🇯🇵',n:'Japan',r:'Asia'},{f:'🇯🇴',n:'Jordan',r:'Middle East'},{f:'🇰🇿',n:'Kazakhstan',r:'Asia'},{f:'🇰🇪',n:'Kenya',r:'Africa'},{f:'🇰🇮',n:'Kiribati',r:'Oceania'},{f:'🇽🇰',n:'Kosovo',r:'Europe'},{f:'🇰🇼',n:'Kuwait',r:'Middle East'},{f:'🇰🇬',n:'Kyrgyzstan',r:'Asia'},{f:'🇱🇦',n:'Laos',r:'Asia'},{f:'🇱🇻',n:'Latvia',r:'Europe'},{f:'🇱🇧',n:'Lebanon',r:'Middle East'},{f:'🇱🇸',n:'Lesotho',r:'Africa'},{f:'🇱🇷',n:'Liberia',r:'Africa'},{f:'🇱🇾',n:'Libya',r:'Africa'},{f:'🇱🇮',n:'Liechtenstein',r:'Europe'},{f:'🇱🇹',n:'Lithuania',r:'Europe'},{f:'🇱🇺',n:'Luxembourg',r:'Europe'},{f:'🇲🇬',n:'Madagascar',r:'Africa'},{f:'🇲🇼',n:'Malawi',r:'Africa'},{f:'🇲🇾',n:'Malaysia',r:'Asia'},{f:'🇲🇻',n:'Maldives',r:'Asia'},{f:'🇲🇱',n:'Mali',r:'Africa'},{f:'🇲🇹',n:'Malta',r:'Europe'},{f:'🇲🇭',n:'Marshall Islands',r:'Oceania'},{f:'🇲🇷',n:'Mauritania',r:'Africa'},{f:'🇲🇺',n:'Mauritius',r:'Africa'},{f:'🇲🇽',n:'Mexico',r:'North America'},{f:'🇫🇲',n:'Micronesia',r:'Oceania'},{f:'🇲🇩',n:'Moldova',r:'Europe'},{f:'🇲🇨',n:'Monaco',r:'Europe'},{f:'🇲🇳',n:'Mongolia',r:'Asia'},{f:'🇲🇪',n:'Montenegro',r:'Europe'},{f:'🇲🇦',n:'Morocco',r:'Africa'},{f:'🇲🇿',n:'Mozambique',r:'Africa'},{f:'🇲🇲',n:'Myanmar',r:'Asia'},{f:'🇳🇦',n:'Namibia',r:'Africa'},{f:'🇳🇷',n:'Nauru',r:'Oceania'},{f:'🇳🇵',n:'Nepal',r:'Asia'},{f:'🇳🇱',n:'Netherlands',r:'Europe'},{f:'🇳🇿',n:'New Zealand',r:'Oceania'},{f:'🇳🇮',n:'Nicaragua',r:'Central America'},{f:'🇳🇪',n:'Niger',r:'Africa'},{f:'🇳🇬',n:'Nigeria',r:'Africa'},{f:'🇰🇵',n:'North Korea',r:'Asia'},{f:'🇲🇰',n:'North Macedonia',r:'Europe'},{f:'🇳🇴',n:'Norway',r:'Europe'},{f:'🇴🇲',n:'Oman',r:'Middle East'},{f:'🇵🇰',n:'Pakistan',r:'Asia'},{f:'🇵🇼',n:'Palau',r:'Oceania'},{f:'🇵🇸',n:'Palestine',r:'Middle East'},{f:'🇵🇦',n:'Panama',r:'Central America'},{f:'🇵🇬',n:'Papua New Guinea',r:'Oceania'},{f:'🇵🇾',n:'Paraguay',r:'South America'},{f:'🇵🇪',n:'Peru',r:'South America'},{f:'🇵🇭',n:'Philippines',r:'Asia'},{f:'🇵🇱',n:'Poland',r:'Europe'},{f:'🇵🇹',n:'Portugal',r:'Europe'},{f:'🇶🇦',n:'Qatar',r:'Middle East'},{f:'🇷🇴',n:'Romania',r:'Europe'},{f:'🇷🇺',n:'Russia',r:'Europe/Asia'},{f:'🇷🇼',n:'Rwanda',r:'Africa'},{f:'🇰🇳',n:'Saint Kitts',r:'Caribbean'},{f:'🇱🇨',n:'Saint Lucia',r:'Caribbean'},{f:'🇻🇨',n:'Saint Vincent',r:'Caribbean'},{f:'🇼🇸',n:'Samoa',r:'Oceania'},{f:'🇸🇲',n:'San Marino',r:'Europe'},{f:'🇸🇹',n:'São Tomé',r:'Africa'},{f:'🇸🇦',n:'Saudi Arabia',r:'Middle East'},{f:'🇸🇳',n:'Senegal',r:'Africa'},{f:'🇷🇸',n:'Serbia',r:'Europe'},{f:'🇸🇨',n:'Seychelles',r:'Africa'},{f:'🇸🇱',n:'Sierra Leone',r:'Africa'},{f:'🇸🇬',n:'Singapore',r:'Asia'},{f:'🇸🇰',n:'Slovakia',r:'Europe'},{f:'🇸🇮',n:'Slovenia',r:'Europe'},{f:'🇸🇧',n:'Solomon Islands',r:'Oceania'},{f:'🇸🇴',n:'Somalia',r:'Africa'},{f:'🇿🇦',n:'South Africa',r:'Africa'},{f:'🇸🇸',n:'South Sudan',r:'Africa'},{f:'🇰🇷',n:'South Korea',r:'Asia'},{f:'🇪🇸',n:'Spain',r:'Europe'},{f:'🇱🇰',n:'Sri Lanka',r:'Asia'},{f:'🇸🇩',n:'Sudan',r:'Africa'},{f:'🇸🇷',n:'Suriname',r:'South America'},{f:'🇸🇪',n:'Sweden',r:'Europe'},{f:'🇨🇭',n:'Switzerland',r:'Europe'},{f:'🇸🇾',n:'Syria',r:'Middle East'},{f:'🇹🇼',n:'Taiwan',r:'Asia'},{f:'🇹🇯',n:'Tajikistan',r:'Asia'},{f:'🇹🇿',n:'Tanzania',r:'Africa'},{f:'🇹🇭',n:'Thailand',r:'Asia'},{f:'🇹🇱',n:'Timor-Leste',r:'Asia'},{f:'🇹🇬',n:'Togo',r:'Africa'},{f:'🇹🇴',n:'Tonga',r:'Oceania'},{f:'🇹🇹',n:'Trinidad and Tobago',r:'Caribbean'},{f:'🇹🇳',n:'Tunisia',r:'Africa'},{f:'🇹🇷',n:'Turkey',r:'Europe/Asia'},{f:'🇹🇲',n:'Turkmenistan',r:'Asia'},{f:'🇹🇻',n:'Tuvalu',r:'Oceania'},{f:'🇺🇬',n:'Uganda',r:'Africa'},{f:'🇺🇦',n:'Ukraine',r:'Europe'},{f:'🇦🇪',n:'United Arab Emirates',r:'Middle East'},{f:'🇬🇧',n:'United Kingdom',r:'Europe'},{f:'🇺🇸',n:'United States',r:'North America'},{f:'🇺🇾',n:'Uruguay',r:'South America'},{f:'🇺🇿',n:'Uzbekistan',r:'Asia'},{f:'🇻🇺',n:'Vanuatu',r:'Oceania'},{f:'🇻🇦',n:'Vatican City',r:'Europe'},{f:'🇻🇪',n:'Venezuela',r:'South America'},{f:'🇻🇳',n:'Vietnam',r:'Asia'},{f:'🇾🇪',n:'Yemen',r:'Middle East'},{f:'🇿🇲',n:'Zambia',r:'Africa'},{f:'🇿🇼',n:'Zimbabwe',r:'Africa'}];
+
+// Comprehensive fallback cities — ALL countries covered, NO country returns empty
+const CFALLBACK={
+  // Europe
+  'Ireland':['Dublin','Cork','Limerick','Galway','Waterford','Drogheda','Dundalk','Swords','Bray','Navan','Ennis','Tralee','Kilkenny','Carlow','Newbridge','Naas','Athlone','Clonmel','Mullingar','Wexford','Letterkenny','Sligo','Tullamore','Arklow','Wicklow','Cobh','Malahide','Finglas','Blanchardstown','Tallaght','Lucan','Portlaoise','Longford','Monaghan','Cavan','Roscommon','Castlebar','Ballinasloe','Thurles','Nenagh','Enniscorthy','New Ross','Killarney','Mallow','Bandon','Youghal','Skibbereen'],
+  'United Kingdom':['London','Manchester','Birmingham','Leeds','Glasgow','Liverpool','Bristol','Edinburgh','Sheffield','Cardiff','Bradford','Coventry','Nottingham','Leicester','Kingston upon Hull','Plymouth','Stoke-on-Trent','Southampton','Derby','Newcastle upon Tyne','Sunderland','Belfast','Wolverhampton','Brighton','Portsmouth','Oxford','Cambridge','Swansea','Reading','Aberdeen','Middlesbrough','Huddersfield','Peterborough','Milton Keynes','Luton','Bolton','York','Norwich','Swindon','Exeter','Bournemouth','Blackpool','Dundee','Newport','Birkenhead','Telford','Gloucester','Preston','Wigan','Southend-on-Sea','Slough','Basildon','Warrington','Ipswich','Northampton','Bath','Cheltenham','Worcester','Salisbury','Durham','Chester','Carlisle','Inverness','Perth','Stirling','Wrexham','Swansea'],
+  'Germany':['Berlin','Munich','Hamburg','Frankfurt','Cologne','Stuttgart','Düsseldorf','Dortmund','Essen','Leipzig','Bremen','Dresden','Hanover','Nuremberg','Duisburg','Bochum','Wuppertal','Bielefeld','Bonn','Münster','Karlsruhe','Mannheim','Augsburg','Wiesbaden','Gelsenkirchen','Mönchengladbach','Braunschweig','Chemnitz','Kiel','Aachen','Halle','Magdeburg','Freiburg','Krefeld','Lübeck','Oberhausen','Erfurt','Rostock','Mainz','Kassel','Hagen','Hamm','Saarbrücken','Mülheim','Potsdam','Ludwigshafen','Oldenburg','Osnabrück','Leverkusen','Solingen','Heidelberg','Paderborn','Darmstadt','Regensburg','Ingolstadt','Würzburg','Fürth','Wolfsburg','Offenbach','Ulm','Heilbronn','Göttingen','Bottrop','Recklinghausen','Bremerhaven','Pforzheim','Remscheid','Trier'],
+  'France':['Paris','Lyon','Marseille','Toulouse','Nice','Nantes','Montpellier','Strasbourg','Bordeaux','Lille','Rennes','Reims','Le Havre','Saint-Étienne','Toulon','Grenoble','Dijon','Angers','Nîmes','Villeurbanne','Le Mans','Clermont-Ferrand','Brest','Tours','Amiens','Limoges','Aix-en-Provence','Perpignan','Boulogne-Billancourt','Metz','Besançon','Orléans','Mulhouse','Rouen','Caen','Nancy','Avignon','Poitiers','Tourcoing','Roubaix','Nanterre','Vitry-sur-Seine','Créteil','Argenteuil','Versailles','Pau','Lorient','Annecy'],
+  'Belgium':['Brussels','Antwerp','Ghent','Charleroi','Liège','Bruges','Namur','Leuven','Mons','Aalst','Mechelen','La Louvière','Kortrijk','Hasselt','Ostend','Sint-Niklaas','Tournai','Genk','Seraing','Roeselare','Mouscron','Verviers','Beveren','Dendermonde','Turnhout','Beringen','Heist-op-den-Berg','Lokeren'],
+  'Netherlands':['Amsterdam','Rotterdam','The Hague','Utrecht','Eindhoven','Tilburg','Groningen','Almere','Breda','Nijmegen','Enschede','Apeldoorn','Haarlem','Arnhem','Zaanstad','s-Hertogenbosch','Amersfoort','Maastricht','Dordrecht','Leiden','Haarlemmermeer','Zoetermeer','Zwolle','Deventer','Delft','Alkmaar','Heerlen','Venlo','Leeuwarden','Emmen','Westland','Sittard','Ede','Helmond'],
+  'Spain':['Madrid','Barcelona','Valencia','Seville','Bilbao','Málaga','Murcia','Palma','Las Palmas de Gran Canaria','Alicante','Córdoba','Valladolid','Vigo','Gijón','Hospitalet de Llobregat','A Coruña','Granada','Vitoria-Gasteiz','Elche','Oviedo','Santa Cruz de Tenerife','Badalona','Cartagena','Móstoles','Sabadell','Jerez de la Frontera','Pamplona','Almería','Fuenlabrada','Leganés','Santander','Burgos','Albacete','Castellón de la Plana','Logroño','Badajoz','Huelva','Salamanca','Tarragona','San Sebastián','León','Dos Hermanas'],
+  'Italy':['Rome','Milan','Naples','Turin','Palermo','Genoa','Bologna','Florence','Bari','Catania','Venice','Verona','Messina','Padua','Trieste','Taranto','Brescia','Prato','Reggio Calabria','Modena','Parma','Reggio Emilia','Perugia','Livorno','Ravenna','Cagliari','Foggia','Rimini','Salerno','Ferrara','Sassari','Latina','Giugliano in Campania','Monza','Bergamo','Pescara','Trento','Bolzano','Siracusa','Forlì','Vicenza'],
+  'Portugal':['Lisbon','Porto','Amadora','Braga','Setúbal','Coimbra','Funchal','Almada','Agualva-Cacém','Queluz','Barreiro','Moita','Maia','Odivelas','Cascais','Évora','Guimarães','Aveiro','Viseu','Leiria','Faro','Portimão','Loures','Vila Nova de Gaia','Matosinhos','Sintra','Vila Franca de Xira','Gondomar'],
+  'Switzerland':['Zurich','Geneva','Basel','Bern','Lausanne','Winterthur','St. Gallen','Lucerne','Lugano','Biel/Bienne','Thun','Köniz','La Chaux-de-Fonds','Fribourg','Schaffhausen','Chur','Neuchâtel','Vernier','Uster','Sion','Emmen','Kriens','Küsnacht','Rapperswil-Jona','Arlesheim'],
+  'Austria':['Vienna','Graz','Linz','Salzburg','Innsbruck','Klagenfurt','Villach','Wels','Sankt Pölten','Dornbirn','Steyr','Wiener Neustadt','Feldkirch','Bregenz','Leonding','Klosterneuburg','Leoben','Baden','Traun','Wolfsberg','Krems an der Donau','Kapfenberg'],
+  'Sweden':['Stockholm','Gothenburg','Malmö','Uppsala','Västerås','Örebro','Linköping','Helsingborg','Jönköping','Norrköping','Lund','Umeå','Gävle','Borås','Eskilstuna','Södertälje','Halmstad','Karlstad','Växjö','Sundsvall','Östersund','Luleå','Borlänge','Kristianstad','Kalmar','Skövde','Trollhättan','Falun','Nyköping','Ängelholm'],
+  'Norway':['Oslo','Bergen','Trondheim','Stavanger','Drammen','Fredrikstad','Kristiansand','Sandnes','Tromsø','Sarpsborg','Skien','Ålesund','Sandefjord','Haugesund','Tønsberg','Moss','Porsgrunn','Bodø','Arendal','Hamar','Larvik','Halden','Gjøvik','Askøy','Jessheim','Kongsberg','Molde','Lillehammer','Harstad','Kvinesdal'],
+  'Denmark':['Copenhagen','Aarhus','Odense','Aalborg','Esbjerg','Randers','Kolding','Vejle','Horsens','Roskilde','Helsingør','Herning','Silkeborg','Næstved','Fredericia','Viborg','Køge','Holstebro','Taastrup','Slagelse','Hillerød','Holbæk','Sønderborg','Hjørring'],
+  'Finland':['Helsinki','Espoo','Tampere','Vantaa','Oulu','Turku','Jyväskylä','Kuopio','Lahti','Kouvola','Pori','Joensuu','Lappeenranta','Hämeenlinna','Vaasa','Seinäjoki','Rovaniemi','Mikkeli','Kotka','Salo','Porvoo','Kokkola','Lohja','Hyvinkää','Järvenpää','Nurmijärvi'],
+  'Poland':['Warsaw','Kraków','Łódź','Wrocław','Poznań','Gdańsk','Szczecin','Bydgoszcz','Lublin','Białystok','Katowice','Gdynia','Częstochowa','Radom','Sosnowiec','Toruń','Kielce','Rzeszów','Gliwice','Zabrze','Bytom','Bielsko-Biała','Olsztyn','Opole','Rybnik','Ruda Śląska','Tychy','Dąbrowa Górnicza','Płock','Elbląg','Wałbrzych'],
+  'Romania':['Bucharest','Cluj-Napoca','Timișoara','Iași','Constanța','Craiova','Brașov','Galați','Ploiești','Oradea','Brăila','Arad','Pitești','Sibiu','Bacău','Târgu Mureș','Baia Mare','Buzău','Botoșani','Satu Mare','Râmnicu Vâlcea','Drobeta-Turnu Severin','Suceava','Piatra Neamț'],
+  'Czech Republic':['Prague','Brno','Ostrava','Plzeň','Liberec','Olomouc','Ústí nad Labem','České Budějovice','Hradec Králové','Pardubice','Zlín','Havířov','Kladno','Most','Opava','Frýdek-Místek','Karviná','Jihlava','Teplice','Děčín'],
+  'Hungary':['Budapest','Debrecen','Miskolc','Szeged','Pécs','Győr','Nyíregyháza','Kecskemét','Székesfehérvár','Szombathely','Szolnok','Tatabánya','Kaposvár','Érd','Veszprém','Zalaegerszeg','Sopron','Eger','Nagykanizsa','Dunakeszi'],
+  'Greece':['Athens','Thessaloniki','Patras','Piraeus','Heraklion','Larissa','Volos','Ioannina','Chania','Chalcis','Agrinion','Katerini','Trikala','Serres','Alexandroupoli','Xanthi','Komotini','Kalamata','Mytilene','Rhodes','Kavala','Lamia','Chios'],
+  'Bulgaria':['Sofia','Plovdiv','Varna','Burgas','Ruse','Stara Zagora','Pleven','Sliven','Dobrich','Shumen','Pernik','Haskovo','Yambol','Pazardzhik','Blagoevgrad','Veliko Tarnovo','Vratsa','Gabrovo','Asenovgrad','Vidin'],
+  'Serbia':['Belgrade','Novi Sad','Niš','Kragujevac','Subotica','Zrenjanin','Pančevo','Čačak','Novi Pazar','Leskovac','Smederevo','Šabac','Valjevo','Vranje','Bor','Sombor','Sremska Mitrovica','Požarevac','Pirot','Zaječar'],
+  'Croatia':['Zagreb','Split','Rijeka','Osijek','Zadar','Slavonski Brod','Pula','Karlovac','Sisak','Varaždin','Šibenik','Dubrovnik','Bjelovar','Vinkovci','Velika Gorica','Vukovar','Koprivnica','Čakovec','Đakovo','Požega'],
+  'Slovakia':['Bratislava','Košice','Prešov','Žilina','Banská Bystrica','Nitra','Trnava','Martin','Trenčín','Poprad','Prievidza','Zvolen','Považská Bystrica','Michalovce','Spišská Nová Ves','Komárno','Levice','Humenne'],
+  'Lithuania':['Vilnius','Kaunas','Klaipėda','Šiauliai','Panevėžys','Alytus','Marijampolė','Mažeikiai','Jonava','Utena','Kėdainiai','Telšiai','Tauragė','Ukmergė','Visaginas'],
+  'Latvia':['Riga','Daugavpils','Liepāja','Jelgava','Jūrmala','Ventspils','Rēzekne','Valmiera','Jēkabpils','Ogre','Tukums','Cēsis','Ludza'],
+  'Estonia':['Tallinn','Tartu','Narva','Pärnu','Kohtla-Järve','Viljandi','Rakvere','Maardu','Sillamäe','Kuressaare','Võru','Valga','Jõhvi'],
+  'Iceland':['Reykjavik','Kópavogur','Hafnarfjörður','Reykjanesbær','Akureyri','Garðabær','Mosfellsbær','Selfoss','Akranes','Borgarnes','Ísafjörður','Höfn'],
+  'Luxembourg':['Luxembourg City','Esch-sur-Alzette','Differdange','Dudelange','Ettelbruck','Diekirch','Wiltz','Echternach','Remich','Grevenmacher'],
+  'Malta':['Valletta','Birkirkara','Mosta','Qormi','San Ġwann','Żabbar','Sliema','San Pawl il-Baħar','Fgura','Ħamrun','Naxxar','Rabat','Msida','Birgu','Żurrieq','Mellieħa'],
+  'Cyprus':['Nicosia','Limassol','Larnaca','Famagusta','Paphos','Kyrenia','Morphou','Paralimni','Agia Napa','Protaras'],
+  'Albania':['Tirana','Durrës','Vlorë','Shkodër','Elbasan','Fier','Korçë','Berat','Lushnje','Gjirokastër','Sarandë','Kavajë','Pogradec','Lezhë','Patos'],
+  'Bosnia and Herzegovina':['Sarajevo','Banja Luka','Tuzla','Zenica','Bijeljina','Mostar','Prijedor','Brčko','Bihać','Doboj','Trebinje','Cazin'],
+  'North Macedonia':['Skopje','Bitola','Kumanovo','Ohrid','Tetovo','Veles','Gostivar','Strumica','Kičevo','Kavadarci'],
+  'Montenegro':['Podgorica','Nikšić','Herceg Novi','Bijelo Polje','Berane','Bar','Budva','Pljevlja','Cetinje','Ulcinj'],
+  'Kosovo':['Pristina','Prizren','Peja','Mitrovica','Gjilan','Ferizaj','Gjakova','Podujevo'],
+  'Moldova':['Chișinău','Tiraspol','Bălți','Bender','Rîbnița','Cahul','Ungheni','Soroca','Orhei','Dubăsari'],
+  'Belarus':['Minsk','Gomel','Mogilev','Vitebsk','Grodno','Brest','Babruysk','Baranovichi','Borisov','Pinsk','Orsha','Mozyr'],
+  'Ukraine':['Kyiv','Kharkiv','Odesa','Dnipro','Donetsk','Zaporizhzhia','Lviv','Kryvyi Rih','Mykolaiv','Mariupol','Luhansk','Vinnytsia','Makiivka','Sevastopol','Simferopol','Poltava','Chernihiv','Kherson','Cherkasy','Sumy'],
+  // Americas
+  'United States':['New York','Los Angeles','Chicago','Houston','Phoenix','Philadelphia','San Antonio','San Diego','Dallas','Jacksonville','Austin','Fort Worth','Columbus','Charlotte','Indianapolis','San Francisco','Seattle','Denver','Nashville','Oklahoma City','El Paso','Washington DC','Boston','Las Vegas','Louisville','Portland','Memphis','Baltimore','Milwaukee','Albuquerque','Tucson','Fresno','Mesa','Sacramento','Kansas City','Atlanta','Omaha','Colorado Springs','Raleigh','Long Beach','Virginia Beach','Minneapolis','Tampa','New Orleans','Arlington','Wichita','Cleveland','Bakersfield','Aurora','Anaheim','Santa Ana','Corpus Christi','Riverside','Lexington','St. Louis','Pittsburgh','Stockton','Anchorage','Cincinnati','St. Paul','Greensboro','Orlando','Lincoln','Plano','Henderson','Newark','Buffalo'],
+  'Canada':['Toronto','Montreal','Vancouver','Calgary','Edmonton','Ottawa','Winnipeg','Quebec City','Hamilton','Kitchener','London','Halifax','Victoria','Oshawa','Windsor','Saskatoon','Regina','St. Catharines','Barrie','Kelowna','Abbotsford','Sudbury','Kingston','Saguenay','Sherbrooke','Guelph','Moncton','Brantford','Thunder Bay','Red Deer','Lethbridge','Kamloops','Chilliwack','Nanaimo','Belleville','Sarnia','Prince George'],
+  'Mexico':['Mexico City','Guadalajara','Monterrey','Puebla','Tijuana','León','Ciudad Juárez','Querétaro','San Luis Potosí','Mérida','Mexicali','Culiacán','Hermosillo','Chihuahua','Aguascalientes','Morelia','Saltillo','Veracruz','Acapulco','Torreón','Naucalpan','Tlalnepantla','Ecatepec','Zapopan','Cancún','Tuxtla Gutiérrez','Toluca','Cuernavaca','Reynosa','Matamoros','Xalapa','Oaxaca','Zacatecas','Tepic','Celaya','Irapuato','Mazatlán'],
+  'Brazil':['São Paulo','Rio de Janeiro','Brasília','Salvador','Fortaleza','Belo Horizonte','Manaus','Curitiba','Recife','Porto Alegre','Belém','Goiânia','Guarulhos','Campinas','São Luís','São Gonçalo','Maceió','Duque de Caxias','Natal','Campo Grande','Teresina','São Bernardo do Campo','Nova Iguaçu','João Pessoa','Santo André','Osasco','São José dos Campos','Ribeirão Preto','Uberlândia','Contagem','Sorocaba','Aracaju','Feira de Santana','Cuiabá','Joinville','Londrina','Aparecida de Goiânia','Porto Velho'],
+  'Argentina':['Buenos Aires','Córdoba','Rosario','Mendoza','La Plata','Tucumán','Mar del Plata','Salta','Santa Fe','San Juan','Resistencia','Santiago del Estero','Corrientes','Misiones','Neuquén','Formosa','San Luis','La Rioja','Catamarca','Posadas','Bahía Blanca','Jujuy','Río Cuarto','Comodoro Rivadavia','Santa Rosa'],
+  'Colombia':['Bogotá','Medellín','Cali','Barranquilla','Cartagena','Cúcuta','Bucaramanga','Pereira','Santa Marta','Ibagué','Manizales','Bello','Pasto','Montería','Villavicencio','Valledupar','Armenia','Neiva','Soledad','Soacha','Popayán','Floridablanca','Palmira','Buenaventura','Sincelejo'],
+  'Chile':['Santiago','Valparaíso','Concepción','La Serena','Antofagasta','Temuco','Rancagua','Talca','Arica','Chillán','Iquique','Copiapó','Puerto Montt','Calama','Osorno','Quilpué','Villa Alemana','Viña del Mar','San Antonio','Coquimbo'],
+  'Peru':['Lima','Arequipa','Trujillo','Chiclayo','Iquitos','Piura','Cusco','Chimbote','Huancayo','Tacna','Juliaca','Puno','Ica','Sullana','Cajamarca','Ayacucho','Chincha Alta','Huánuco','Tarapoto','Pucallpa'],
+  'Venezuela':['Caracas','Maracaibo','Valencia','Barquisimeto','Maracay','Ciudad Guayana','Maturín','Barcelona','Cumaná','Barinas','Mérida','San Cristóbal','Turmero','Los Teques','Cabimas','Punto Fijo','Guatire'],
+  'Ecuador':['Guayaquil','Quito','Cuenca','Santo Domingo','Machala','Durán','Manta','Portoviejo','Loja','Ambato','Esmeraldas','Riobamba','Ibarra','Quevedo','Babahoyo'],
+  'Bolivia':['Sucre','La Paz','Santa Cruz','Cochabamba','Oruro','Potosí','Tarija','Trinidad','Cobija','Riberalta','Montero'],
+  'Paraguay':['Asunción','Ciudad del Este','San Lorenzo','Luque','Fernando de la Mora','Lambaré','Capiatá','Ñemby','Mariano Roque Alonso','Pedro Juan Caballero'],
+  'Uruguay':['Montevideo','Salto','Ciudad de la Costa','Paysandú','Las Piedras','Rivera','Maldonado','Tacuarembó','Melo','Mercedes'],
+  // Asia
+  'India':['Mumbai','Delhi','Bangalore','Hyderabad','Chennai','Kolkata','Pune','Ahmedabad','Jaipur','Surat','Lucknow','Kanpur','Nagpur','Indore','Thane','Bhopal','Visakhapatnam','Pimpri-Chinchwad','Patna','Vadodara','Ghaziabad','Ludhiana','Agra','Nashik','Faridabad','Meerut','Rajkot','Kalyan-Dombivali','Vasai-Virar','Varanasi','Srinagar','Aurangabad','Dhanbad','Amritsar','Navi Mumbai','Allahabad','Ranchi','Howrah','Coimbatore','Jabalpur','Gwalior','Vijayawada','Jodhpur','Madurai','Raipur','Kota','Chandigarh','Guwahati','Solapur','Hubli-Dharwad','Bareilly','Mysore','Tiruppur','Gurgaon','Aligarh','Jalandhar','Bhubaneswar','Salem','Warangal','Guntur','Bhiwandi','Saharanpur','Gorakhpur','Bikaner','Amravati','Noida','Jamshedpur','Bhilai','Cuttack','Firozabad','Kochi','Nellore','Bhavnagar','Dehradun','Durgapur','Asansol','Nanded','Kolhapur','Ajmer','Gulbarga','Jamnagar','Ujjain','Siliguri','Jhansi','Ulhasnagar','Jammu','Mangalore','Erode','Tirunelveli','Udaipur','Kakinada','Davanagere','Kozhikode','Akola','Kurnool','Rajpur Sonarpur','Ranchi'],
+  'Pakistan':['Karachi','Lahore','Islamabad','Rawalpindi','Faisalabad','Peshawar','Quetta','Multan','Sialkot','Gujranwala','Hyderabad','Bahawalpur','Sargodha','Sukkur','Larkana','Sheikhupura','Rahim Yar Khan','Jhang','Dera Ghazi Khan','Gujrat','Kasur','Mardan','Mingora','Nawabshah','Sahiwal','Mirpur Khas','Okara','Mandi Bahauddin','Jhelum','Sadiqabad','Burewala','Jacobabad','Muzaffarabad','Kohat','Abbottabad','Mansehra','Turbat','Khuzdar','Charsadda','Nowshera','Chiniot','Hafizabad','Khanewal','Pakpattan','Bahawalnagar','Muzaffargarh','Mianwali','Attock','Wah Cantonment','Mirpur','Tando Allahyar','Kamalia','Daska','Sambrial','Gojra','Jaranwala','Muridke','Khushab','Dera Ismail Khan','Bannu','Swabi'],
+  'China':['Beijing','Shanghai','Guangzhou','Shenzhen','Chengdu','Hangzhou','Wuhan','Xi\'an','Suzhou','Nanjing','Tianjin','Chongqing','Dongguan','Foshan','Shenyang','Qingdao','Zhengzhou','Jinan','Kunming','Changsha','Harbin','Dalian','Xiamen','Hefei','Fuzhou','Guiyang','Shijiazhuang','Nanchang','Taiyuan','Changchun','Lanzhou','Nanning','Wenzhou','Ningbo','Wuxi','Jiangmen','Zhuhai','Zhongshan','Huizhou','Tangshan','Baoding','Luoyang','Xuzhou','Nantong','Urumqi','Ürümqi'],
+  'Japan':['Tokyo','Osaka','Yokohama','Nagoya','Sapporo','Fukuoka','Kobe','Kawasaki','Kyoto','Saitama','Hiroshima','Sendai','Kitakyushu','Chiba','Sakai','Kumamoto','Okayama','Sagamihara','Hamamatsu','Niigata','Shizuoka','Utsunomiya','Matsuyama','Kanazawa','Hachioji','Higashiosaka','Matsudo','Nishinomiya','Kurashiki','Ichikawa','Funabashi','Kawaguchi','Himeji','Toyonaka','Suita'],
+  'South Korea':['Seoul','Busan','Incheon','Daegu','Daejeon','Gwangju','Suwon','Ulsan','Changwon','Seongnam','Goyang','Yongin','Bucheon','Ansan','Anyang','Cheongju','Jeonju','Cheonan','Namyangju','Uijeongbu','Hwaseong','Jinju','Pohang','Gimhae'],
+  'Indonesia':['Jakarta','Surabaya','Bandung','Medan','Bekasi','Tangerang','Depok','Semarang','Makassar','Palembang','Bogor','South Tangerang','Batam','Pekanbaru','Bandar Lampung','Malang','Padang','Denpasar','Samarinda','Tasikmalaya','Banjarmasin','Pontianak','Manado','Ambon','Jayapura'],
+  'Malaysia':['Kuala Lumpur','George Town','Ipoh','Johor Bahru','Kota Kinabalu','Kuching','Shah Alam','Subang Jaya','Petaling Jaya','Klang','Kota Bharu','Kuala Terengganu','Alor Setar','Miri','Sandakan','Tawau','Bintulu','Sibu','Seremban','Nilai','Rawang','Kajang','Sungai Petani','Kulim'],
+  'Philippines':['Manila','Quezon City','Caloocan','Davao','Cebu City','Zamboanga','Antipolo','Pasig','Taguig','Valenzuela','Makati','Las Piñas','Bacoor','Dasmariñas','Cagayan de Oro','General Santos','Parañaque','Muntinlupa','Bacolod','Iloilo City','Marikina','Navotas','Malabon','Mandaluyong','Pasay','San Jose del Monte','Calamba','Biñan','Taytay'],
+  'Vietnam':['Ho Chi Minh City','Hanoi','Da Nang','Cần Thơ','Haiphong','Biên Hòa','Nha Trang','Hạ Long','Huế','Buôn Ma Thuột','Vũng Tàu','Nam Định','Vinh','Thái Nguyên','Rạch Giá','Quy Nhơn','Long Xuyên','Đà Lạt','Mỹ Tho','Pleiku','Bắc Giang'],
+  'Thailand':['Bangkok','Chiang Mai','Phuket','Pattaya','Hat Yai','Nonthaburi','Pak Kret','Chiang Rai','Udon Thani','Nakhon Ratchasima','Khon Kaen','Rayong','Ubon Ratchathani','Nakhon Si Thammarat','Surat Thani','Lampang','Phitsanulok','Lopburi','Nakhon Sawan','Nakhon Pathom'],
+  'Singapore':['Singapore City','Jurong East','Woodlands','Tampines','Ang Mo Kio','Toa Payoh','Yishun','Bukit Batok','Clementi','Queenstown','Bishan','Sengkang','Punggol','Bedok','Pasir Ris','Hougang','Serangoon','Choa Chu Kang','Jurong West'],
+  'Bangladesh':['Dhaka','Chittagong','Sylhet','Rajshahi','Khulna','Comilla','Narayanganj','Mymensingh','Gazipur','Barisal','Rangpur','Tangail','Saidpur','Bogra','Jamalpur','Jessore','Feni','Chandpur','Brahmanbaria','Sirajganj'],
+  'Sri Lanka':['Colombo','Kandy','Galle','Negombo','Jaffna','Batticaloa','Trincomalee','Ratnapura','Kurunegala','Anuradhapura','Polonnaruwa','Badulla','Matara','Nuwara Eliya','Vavuniya'],
+  'Nepal':['Kathmandu','Pokhara','Lalitpur','Biratnagar','Bharatpur','Birgunj','Dharan','Hetauda','Butwal','Dhangadhi','Janakpur','Itahari','Birtamod'],
+  'Myanmar':['Yangon','Mandalay','Naypyidaw','Mawlamyine','Taunggyi','Pathein','Sittwe','Myitkyina','Monywa','Pyay','Meiktila','Lashio','Hpa-An','Bago'],
+  'Cambodia':['Phnom Penh','Siem Reap','Battambang','Sihanoukville','Kampong Cham','Kampot','Pursat','Kampong Speu','Takéo','Kampong Thom'],
+  'Laos':['Vientiane','Luang Prabang','Savannakhet','Pakse','Thakhek','Xam Neua','Phonsavan','Luang Namtha','Attapeu'],
+  'Mongolia':['Ulaanbaatar','Erdenet','Darkhan','Choibalsan','Mörön','Khovd','Ölgii','Ulaangom','Arvaikheer'],
+  'Kazakhstan':['Almaty','Nur-Sultan','Shymkent','Karaganda','Aktobe','Taraz','Pavlodar','Ust-Kamenogorsk','Semey','Oral','Kostanay','Kyzylorda','Petropavl','Aktau'],
+  'Uzbekistan':['Tashkent','Namangan','Samarkand','Andijan','Nukus','Bukhara','Fergana','Qarshi','Jizzakh','Chirchiq','Margilan','Urganch'],
+  'Azerbaijan':['Baku','Ganja','Sumgayit','Mingachevir','Nakhchivan','Shirvan','Lankaran','Shaki','Yevlakh','Khankendi'],
+  'Georgia':['Tbilisi','Kutaisi','Batumi','Rustavi','Gori','Zugdidi','Poti','Kobuleti','Khashuri','Telavi'],
+  'Armenia':['Yerevan','Gyumri','Vanadzor','Vagharshapat','Hrazdan','Abovyan','Kapan','Gavar','Goris','Masis'],
+  'Tajikistan':['Dushanbe','Khujand','Kulob','Qurghonteppa','Istaravshan','Uroteppa','Konibodom','Buston'],
+  'Kyrgyzstan':['Bishkek','Osh','Jalal-Abad','Karakol','Tokmok','Uzgen','Kara-Balta','Naryn','Balykchy'],
+  'Turkmenistan':['Ashgabat','Türkmenabat','Daşoguz','Mary','Balkanabat','Bayramaly','Tejen','Serdar'],
+  'Taiwan':['Taipei','New Taipei','Kaohsiung','Taichung','Tainan','Taoyuan','Hsinchu','Keelung','Chiayi','Changhua','Miaoli','Nantou'],
+  'Hong Kong':['Hong Kong Island','Kowloon','New Territories','Tuen Mun','Yuen Long','Sha Tin','Sai Kung','Tseung Kwan O'],
+  // Middle East
+  'United Arab Emirates':['Dubai','Abu Dhabi','Sharjah','Ajman','Ras Al Khaimah','Fujairah','Al Ain','Umm Al Quwain','Khor Fakkan','Kalba','Jebel Ali','Deira','Bur Dubai','Jumeirah','Mirdif','Business Bay','Al Quoz'],
+  'Saudi Arabia':['Riyadh','Jeddah','Mecca','Medina','Dammam','Al Khobar','Dhahran','Tabuk','Buraydah','Khamis Mushait','Al-Hasa','Abha','Al Qatif','Yanbu','Najran','Al Jubayl','Al Taif','Hail','Sakakah','Jizan','Unayzah','Al Majmaah','Kharj','Afif'],
+  'Qatar':['Doha','Al Rayyan','Umm Salal','Al Wakrah','Al Khor','Mesaieed','Dukhan','Al Shamal'],
+  'Kuwait':['Kuwait City','Hawalli','Salmiya','Al Ahmadi','Jahra','Farwaniya','Mangaf','Fintas','Abu Halifa'],
+  'Bahrain':['Manama','Riffa','Muharraq','Hamad Town','A\'ali','Isa Town','Sitra','Budaiya','Jidhafs'],
+  'Oman':['Muscat','Seeb','Salalah','Bawshar','Sohar','Nizwa','Sur','Ibra','Bahla','Rustaq','Khasab'],
+  'Jordan':['Amman','Zarqa','Irbid','Russeifa','Aqaba','Al-Salt','Madaba','Jerash','Mafraq','Karak','At-Tafilah'],
+  'Lebanon':['Beirut','Tripoli','Sidon','Tyre','Jounieh','Zahlé','Baalbek','Nabatieh','Byblos'],
+  'Israel':['Tel Aviv','Jerusalem','Haifa','Rishon LeZion','Petah Tikva','Ashdod','Netanya','Beer Sheva','Bnei Brak','Bat Yam','Holon','Ramat Gan','Ashkelon','Rehovot','Herzliya','Kfar Sava'],
+  'Iraq':['Baghdad','Basra','Mosul','Erbil','Sulaymaniyah','Kirkuk','Najaf','Karbala','Hilla','Nasiriyah','Amarah','Diwaniyah','Kut','Samawah','Ramadi','Fallujah','Tikrit','Duhok'],
+  'Iran':['Tehran','Mashhad','Isfahan','Karaj','Tabriz','Shiraz','Ahvaz','Qom','Kermanshah','Urmia','Rasht','Zahedan','Hamadan','Kerman','Arak','Yazd','Ardabil','Bandar Abbas','Qazvin','Zanjan'],
+  'Syria':['Damascus','Aleppo','Homs','Latakia','Hama','Deir ez-Zor','Raqqa','Idlib','Al-Bab','Daraa'],
+  'Yemen':['Sana\'a','Aden','Taiz','Al Hudaydah','Ibb','Dhamar','Mukalla','Hajjah','Amran'],
+  // Africa
+  'Nigeria':['Lagos','Kano','Ibadan','Abuja','Port Harcourt','Benin City','Maiduguri','Zaria','Aba','Jos','Ilorin','Oyo','Enugu','Abeokuta','Kaduna','Ogbomosho','Ikeja','Onitsha','Warri','Sokoto','Calabar','Uyo','Asaba','Akure','Bauchi','Makurdi','Gombe','Umuahia'],
+  'South Africa':['Johannesburg','Cape Town','Durban','Pretoria','Port Elizabeth','Pietermaritzburg','Benoni','Tembisa','East London','Vereeniging','Bloemfontein','Sandton','Soweto','Randburg','Boksburg','Krugersdorp','Welkom','Newcastle','Midrand','Polokwane','Rustenburg','George','Upington','Kimberley','Richards Bay','Witbank','Nelspruit','Stellenbosch','Paarl','George'],
+  'Kenya':['Nairobi','Mombasa','Kisumu','Nakuru','Eldoret','Ruiru','Kikuyu','Kangundo','Thika','Naivasha','Kitale','Malindi','Garissa','Kisii','Nyeri','Kericho','Meru','Embu','Kakamega','Machakos','Lamu','Bungoma','Homa Bay','Migori','Siaya','Voi','Athi River','Ongata Rongai','Limuru','Kajiado','Narok','Marsabit'],
+  'Ghana':['Accra','Kumasi','Tamale','Takoradi','Ashaiman','Cape Coast','Obuasi','Teshie','Tema','Techiman','Sunyani','Koforidua','Ho','Wa','Bolgatanga','Winneba','Nkawkaw','Konongo','Nsawam','Agogo','Kpando','Hohoe','Dambai','Aflao','Berekum','Kintampo'],
+  'Senegal':['Dakar','Thiès','Kaolack','Ziguinchor','Saint-Louis','Diourbel','Louga','Tambacounda','Kolda','Matam','Touba','Mbour','Rufisque','Pikine','Guédiawaye','Mbacké','Vélingara','Kédougou','Podor','Richard-Toll','Tivaouane','Fatick','Gossas','Bignona','Oussouye','Sédhiou','Dagana'],
+  'Tanzania':['Dar es Salaam','Mwanza','Arusha','Dodoma','Mbeya','Morogoro','Tanga','Kahama','Tabora','Zanzibar City','Moshi','Kigoma','Sumbawanga','Singida','Musoma','Shinyanga','Lindi','Mtwara','Iringa','Songea'],
+  'Ethiopia':['Addis Ababa','Dire Dawa','Gondar','Mekelle','Adama','Hawassa','Bahir Dar','Jimma','Jijiga','Dessie','Debre Markos','Debre Birhan','Shashamane','Arba Minch','Hosaena','Wolaita Sodo','Axum','Dilla','Nekemte','Assosa'],
+  'Uganda':['Kampala','Gulu','Lira','Mbarara','Jinja','Mbale','Kasese','Masaka','Fort Portal','Soroti','Kitgum','Arua','Hoima','Kabale','Entebbe'],
+  'Rwanda':['Kigali','Butare','Gitarama','Musanze','Byumba','Gisenyi','Rwamagana','Kibuye','Kibungo'],
+  'Ivory Coast':['Abidjan','Bouaké','Daloa','Korhogo','Man','San-Pédro','Yamoussoukro','Divo','Gagnoa','Abengourou','Aboisso','Odienné'],
+  'Cameroon':['Douala','Yaoundé','Bamenda','Bafoussam','Garoua','Maroua','Ngaoundéré','Buea','Kumba','Nkongsamba','Dschang','Edéa'],
+  'Morocco':['Casablanca','Rabat','Fez','Marrakesh','Agadir','Tangier','Meknès','Oujda','Kenitra','Salé','Tetouan','El Jadida','Safi','Mohammedia','Béni Mellal','Nador','Khouribga','Settat','Ksar El Kébir','Larache','Berrechid'],
+  'Algeria':['Algiers','Oran','Constantine','Batna','Sétif','Annaba','Sidi Bel Abbès','Biskra','Tébessa','El Oued','Skikda','Tiaret','Béjaïa','Blida','Bordj Bou Arréridj','Souk Ahras','Tlemcen','Ouargla','Chlef','Médéa'],
+  'Tunisia':['Tunis','Sfax','Sousse','Ettadhamen','Kairouan','Gabès','Bizerte','Ariana','Gafsa','Médenine','Kasserine','Monastir','Mahdia','La Marsa','Ben Arous','Nabeul','Tataouine','El Kef','Sidi Bouzid','Jendouba'],
+  'Egypt':['Cairo','Alexandria','Giza','Shubra El-Kheima','Port Said','Suez','Luxor','Al-Mansoura','El-Mahalla El-Kubra','Tanta','Asyut','Ismailia','Fayyum','Zagazig','Aswan','Damietta','Damanhur','Minya','Beni Suef','Hurghada','Qena','Sohag','Shibin El-Kom','Banha','Kafr El-Sheikh','Arish'],
+  'Angola':['Luanda','Huambo','Lobito','Benguela','Kuito','Lubango','Malanje','Namibe','Soyo','Cabinda','N\'dalatando','Uíge'],
+  'Mozambique':['Maputo','Matola','Beira','Nampula','Chimoio','Quelimane','Tete','Lichinga','Pemba','Nacala','Inhambane','Xai-Xai'],
+  'Zimbabwe':['Harare','Bulawayo','Chitungwiza','Mutare','Gweru','Kwekwe','Kadoma','Masvingo','Chinhoyi','Norton','Marondera'],
+  'Zambia':['Lusaka','Kitwe','Ndola','Kabwe','Chingola','Mufulira','Livingstone','Luanshya','Kasama','Chipata','Mazabuka'],
+  'Botswana':['Gaborone','Francistown','Molepolole','Maun','Serowe','Kanye','Mogoditshane','Lobatse','Selibe Phikwe','Ramotswa'],
+  'Namibia':['Windhoek','Rundu','Walvis Bay','Oshakati','Swakopmund','Katima Mulilo','Ondangwa','Rehoboth','Otjiwarongo','Tsumeb'],
+  'Malawi':['Lilongwe','Blantyre','Mzuzu','Zomba','Kasungu','Mangochi','Karonga','Salima','Nkhotakota','Liwonde'],
+  'Sudan':['Khartoum','Omdurman','Khartoum North','Port Sudan','Kassala','El Obeid','Gedaref','Wad Madani','El Fasher','Nyala'],
+  'Madagascar':['Antananarivo','Toamasina','Antsirabe','Mahajanga','Fianarantsoa','Toliara','Antsiranana','Ambovombe','Moramanga'],
+  'Somalia':['Mogadishu','Hargeisa','Bosaso','Kismayo','Berbera','Marka','Baidoa','Galkayo','Jawhar'],
+  // Oceania
+  'Australia':['Sydney','Melbourne','Brisbane','Perth','Adelaide','Gold Coast','Newcastle','Canberra','Sunshine Coast','Wollongong','Logan City','Geelong','Hobart','Townsville','Cairns','Darwin','Toowoomba','Ballarat','Bendigo','Albury','Launceston','Mackay','Rockhampton','Bunbury','Bundaberg','Hervey Bay','Wagga Wagga','Shepparton','Mildura','Gladstone','Tamworth','Coffs Harbour','Port Macquarie','Orange','Dubbo','Geraldton','Mandurah','Caloundra'],
+  'New Zealand':['Auckland','Wellington','Christchurch','Hamilton','Tauranga','Napier-Hastings','Dunedin','Palmerston North','Nelson','Rotorua','New Plymouth','Whangarei','Invercargill','Whanganui','Gisborne','Porirua','Lower Hutt','Upper Hutt','Timaru'],
+  'Papua New Guinea':['Port Moresby','Lae','Mount Hagen','Madang','Kokopo','Wewak','Goroka','Popondetta','Kimbe'],
+  'Fiji':['Suva','Lautoka','Nausori','Labasa','Ba','Tavua','Nadi','Sigatoka'],
+};
+
+
+// Pitch templates
+const TPLS={
+  0:[
+    {lbl:'Guest Posting · T1 — Curious + Insight',ch:'💬',subj:null,raw:`Hi Greetings,\n\nI was going through your work at [AGENCY] and I admire your skill — especially how you're handling SEO for your clients across [CITY] 👏\n\nQuick question out of curiosity: when it comes to backlinks, guest posts & PR placements — do you usually keep it fully in-house, or does it sometimes get stretched depending on client load?\n\nI've been speaking with a few agencies lately, and many of them are great at strategy but prefer having a reliable backend partner for execution when things scale.\n\nJust wanted to understand how you guys approach it 🙂\n\n[SIG]`},
+    {lbl:'Guest Posting · T2 — Psychology Hook',ch:'✉️',subj:'A thought on guest posting at scale — [AGENCY]',raw:`Hey [NAME],\n\nI had a random thought while working with agencies recently — it made me realize something.\n\nMost teams are solid at SEO strategy, but link building (quality guest post placements especially) becomes time-consuming when multiple clients scale at once.\n\nI'm curious how you handle this at [AGENCY] in [CITY]?\n\nDo you keep a dedicated in-house system, or prefer flexible support when workload spikes?\n\nNo pitch here — just exchanging notes 👍\n\n[SIG]`},
+    {lbl:'Guest Posting · T3 — Soft Authority',ch:'💬',subj:null,raw:`Hi [NAME],\n\nI've been connecting with SEO agencies recently and noticed an interesting pattern.\n\nMany prefer staying focused on client strategy & results, while keeping guest posting execution flexible. Makes a lot of sense.\n\nGot me curious about your setup at [AGENCY] in [CITY]!\n\nDo you handle backlinks & outreach fully in-house, or collaborate externally?\n\nWould love to hear your approach 🙂\n\n[SIG]`}
+  ],
+  1:[
+    {lbl:'Digital PR · T1 — Curious + Insight',ch:'💬',subj:null,raw:`Hi Greetings,\n\nI came across [AGENCY] and really liked how you're building authority for clients across [CITY] 👏\n\nJust curious — when it comes to Digital PR campaigns, media outreach & press placements, do you manage everything in-house or does capacity sometimes become a challenge?\n\nJust wanted to get your perspective 🙂\n\n[SIG]`},
+    {lbl:'Digital PR · T2 — Psychology Hook',ch:'✉️',subj:'Digital PR execution — quick thought for [AGENCY]',raw:`Hey [NAME],\n\nSomething I've noticed working with agencies:\n\nMost are excellent at Digital PR strategy — but the actual execution eats enormous time when managing multiple clients at once.\n\nHow does [AGENCY] in [CITY] handle this?\n\nGenuinely curious — not pitching 👍\n\n[SIG]`},
+    {lbl:'Digital PR · T3 — Soft Authority',ch:'💬',subj:null,raw:`Hi [NAME],\n\nBeen connecting with digital teams across [CITY] recently.\n\nTop agencies tend to focus their internal team on strategy, while partnering externally for heavy Digital PR execution.\n\nMade me curious about [AGENCY] — fully in-house or do you flex the model?\n\n[SIG]`}
+  ],
+  2:[
+    {lbl:'SEO Consulting · T1 — Curious + Insight',ch:'💬',subj:null,raw:`Hi Greetings,\n\nI was checking out [AGENCY]'s work — genuinely impressed by how you're positioning in [CITY]'s market 👏\n\nQuick question: when clients need deeper SEO consulting — technical audits, advanced strategy — is that handled internally or do you bring in external expertise?\n\nJust wanted to understand your approach 🙂\n\n[SIG]`},
+    {lbl:'SEO Consulting · T2 — Psychology Hook',ch:'✉️',subj:'SEO consulting capacity — a thought for [AGENCY]',raw:`Hey [NAME],\n\nA pattern I keep seeing:\n\nThe best agencies are great at client management, but there's always a point where SEO consulting demand outpaces what the internal team can handle at depth.\n\nHow does [AGENCY] in [CITY] handle those situations?\n\nGenuinely curious 👍\n\n[SIG]`},
+    {lbl:'SEO Consulting · T3 — Soft Authority',ch:'💬',subj:null,raw:`Hi [NAME],\n\nConnecting with SEO agencies across [CITY] lately — the best ones keep core team focused on execution, but tap external SEO consulting when challenges require fresh eyes.\n\nMade me curious about [AGENCY]'s model — how do you approach this?\n\n[SIG]`}
+  ]
+};
+
+// State
+let selC=null,selCity=null,kwList=[],allLeads=[],allCities=[];
+let activeSvc=0,activeTpl=0,activeLeadIdx=0,senderMode='self';
+let totalPages=0,editMode='edit';
+let userEdited=false; // track if user has manually edited the pitch
+
+const PRELOADED=[
+  {name:'Pixel Rank Agency',flag:'🇩🇪',cat:'SEO Agency',email:'hello@pixelrank.de',phone:'+49 30 12345678',wa:'yes',website:'pixelrank.de',score:88,status:'New',city:'Berlin',country:'Germany',page:1,rating:'4.8 ★',reviews:47},
+  {name:'SearchPro Ltd',flag:'🇬🇧',cat:'Digital Marketing',email:'info@searchpro.co.uk',phone:'+44 20 79460012',wa:'yes',website:'searchpro.co.uk',score:85,status:'New',city:'London',country:'United Kingdom',page:1,rating:'4.6 ★',reviews:32},
+  {name:'Agence Web Dakar',flag:'🇸🇳',cat:'SEO & Web',email:'contact@agencedakar.sn',phone:'+221 77 1234567',wa:'yes',website:'agencedakar.sn',score:92,status:'New',city:'Dakar',country:'Senegal',page:1,rating:'4.9 ★',reviews:18},
+  {name:'Digital Boost Inc',flag:'🇺🇸',cat:'Content & SEO',email:'team@digitalboost.io',phone:'+1 212 5556789',wa:'unknown',website:'digitalboost.io',score:78,status:'New',city:'New York',country:'United States',page:2,rating:'4.5 ★',reviews:124},
+  {name:'SEO Edge Co',flag:'🇵🇰',cat:'SEO & Outreach',email:'—',phone:'+92 42 35678901',wa:'no',website:'seoedge.pk',score:74,status:'New',city:'Lahore',country:'Pakistan',page:1,rating:'4.4 ★',reviews:22},
+];
+
+window.addEventListener('DOMContentLoaded',()=>{
+  renderCDrop(COUNTRIES);
+  allLeads=[...PRELOADED];
+  PRELOADED.forEach((l,i)=>appendRow(l,i));
+  updateStats();loadPitch();updateLeadBtns();
+});
+
+// COUNTRY
+function renderCDrop(list){
+  const d=document.getElementById('cdrop');
+  if(!list.length){d.innerHTML='<div style="padding:9px 12px;font-size:.72rem;color:var(--text4)">No results</div>';return}
+  d.innerHTML=list.map(c=>{const sc=getScore(c.n);return`<div class="copt" onclick="pickC('${c.n.replace(/'/g,"\\'")}','${c.f}')"><span class="cf">${c.f}</span><span class="cn">${c.n}</span><span class="cr">${c.r}</span><span class="cs" style="background:${sc.c}">${sc.s}/100</span></div>`}).join('');
+}
+function filterC(q){document.getElementById('cdrop').classList.add('open');renderCDrop(COUNTRIES.filter(c=>c.n.toLowerCase().includes(q.toLowerCase())))}
+function openCD(){document.getElementById('cdrop').classList.add('open');renderCDrop(COUNTRIES)}
+document.addEventListener('click',e=>{if(!e.target.closest('#csw'))document.getElementById('cdrop').classList.remove('open')});
+document.addEventListener('click',e=>{if(!e.target.closest('.city-sw'))document.getElementById('city-drop').classList.remove('open')});
+
+function pickC(n,f){
+  selC={n,f};document.getElementById('cdrop').classList.remove('open');
+  document.getElementById('csi').style.display='none';
+  const sc=getScore(n);
+  const sd=document.getElementById('sel-d');
+  sd.style.cssText=`display:flex;padding:8px 11px;border-radius:8px;font-size:.78rem;font-weight:600;align-items:center;gap:7px;background:${sc.bg};border:1.5px solid ${sc.c}28`;
+  sd.innerHTML=`<span style="font-size:.9rem">${f}</span><span style="font-weight:800;color:var(--navy)">${n}</span><span style="margin-left:auto;font-family:var(--sans);font-size:.9rem;font-weight:900;color:${sc.c}">${sc.s}/100</span><button class="sel-x" onclick="clearC()">✕</button>`;
+  // Score card
+  const el=document.getElementById('c-sc');
+  el.style.cssText=`border-radius:10px;padding:11px 13px;background:${sc.bg};border:1px solid ${sc.c}25`;
+  el.innerHTML=`<div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><div style="font-size:.58rem;font-weight:700;color:${sc.c};text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">📊 ${n} — Outreach Score</div><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:7px"><span style="font-size:.6rem;background:rgba(0,0,0,.06);padding:2px 7px;border-radius:4px;color:var(--text2)">Openness: ${sc.op}/100</span><span style="font-size:.6rem;background:rgba(0,0,0,.06);padding:2px 7px;border-radius:4px;color:var(--text2)">Low Saturation: ${sc.sat}/100</span><span style="font-size:.6rem;background:rgba(0,0,0,.06);padding:2px 7px;border-radius:4px;color:var(--text2)">Digital: ${sc.dm}/100</span></div><div style="height:4px;background:rgba(0,0,0,.08);border-radius:4px;overflow:hidden;margin-bottom:7px"><div style="height:100%;width:${sc.s}%;background:${sc.c};border-radius:4px;transition:width .6s"></div></div><div style="font-size:.62rem;color:var(--text2);background:rgba(0,0,0,.04);padding:7px 9px;border-radius:6px;line-height:1.7">💡 ${sc.tip}</div></div><div style="text-align:right;flex-shrink:0"><div style="font-family:var(--sans);font-size:1.9rem;font-weight:900;line-height:1;color:${sc.c}">${sc.s}</div><div style="font-size:.48rem;opacity:.7;color:${sc.c};font-weight:700;letter-spacing:.08em">OUT OF 100</div><div style="font-size:.58rem;font-weight:700;color:${sc.c};margin-top:3px">${sc.l}</div></div></div>`;
+  el.classList.add('on');
+  loadCities(n);
+}
+function clearC(){
+  selC=null;selCity=null;allCities=[];
+  document.getElementById('csi').style.display='block';document.getElementById('csi').value='';
+  document.getElementById('sel-d').style.display='none';
+  document.getElementById('c-sc').classList.remove('on');
+  document.getElementById('city-sw').style.display='none';
+  document.getElementById('city-ph').style.display='block';
+  document.getElementById('city-sel').style.display='none';
+  document.getElementById('city-sc').classList.remove('on');
+  document.getElementById('city-loading').style.display='none';
+  document.getElementById('city-count').style.display='none';
+}
+
+function loadCities(country){
+  const sw=document.getElementById('city-sw'),load=document.getElementById('city-loading'),ph=document.getElementById('city-ph');
+  ph.style.display='none';document.getElementById('city-sel').style.display='none';
+  document.getElementById('city-sc').classList.remove('on');
+  sw.style.display='none';load.style.display='block';
+  document.getElementById('city-count').style.display='none';
+
+  fetch('https://countriesnow.space/api/v0.1/countries/cities',{
+    method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({country})
+  })
+  .then(r=>r.json())
+  .then(d=>{
+    load.style.display='none';
+    const apiCities=(d.data&&d.data.length)?d.data:[];
+    const fbCities=CFALLBACK[country]||[];
+    // Merge API + fallback, deduplicate, sort
+    const merged=[...new Set([...apiCities,...fbCities])].sort();
+    allCities=merged.length>=1?merged:['Add city manually'];
+    document.getElementById('city-count').style.display='block';
+    document.getElementById('city-count').innerHTML=`<span style="color:var(--green2);font-weight:700">${allCities.length} cities loaded</span> (API + our database)`;
+    sw.style.display='block';
+    document.getElementById('city-si').value='';
+    renderCityDrop(allCities.slice(0,100));
+  })
+  .catch(()=>{
+    load.style.display='none';
+    const fbCities=CFALLBACK[country]||[];
+    allCities=fbCities.length?[...fbCities].sort():['Type city name manually'];
+    document.getElementById('city-count').style.display='block';
+    document.getElementById('city-count').innerHTML=`<span style="color:var(--amber);font-weight:700">${allCities.length} cities</span> (offline database)`;
+    document.getElementById('city-sw').style.display='block';
+    renderCityDrop(allCities.slice(0,100));
+  });
+}
+
+function renderCityDrop(list){
+  const d=document.getElementById('city-drop');
+  if(!list.length){d.innerHTML='<div style="padding:9px 12px;font-size:.72rem;color:var(--text4)">No cities found</div>';return}
+  const cn=selC?selC.n:'';
+  d.innerHTML=list.map(c=>{const cs=cityScore(cn,c);const col=scoreColor(cs);return`<div class="city-opt" onclick="pickCity('${c.replace(/'/g,"\\'")}')"><span>📍 ${c}</span><span class="cpill" style="background:${col}">${cs}/100</span></div>`}).join('');
+}
+function filterCity(q){
+  document.getElementById('city-drop').classList.add('open');
+  if(!q.trim()){renderCityDrop(allCities.slice(0,100));return}
+  // Show ALL matching cities — no artificial limit
+  renderCityDrop(allCities.filter(c=>c.toLowerCase().includes(q.toLowerCase())));
+}
+function openCityDrop(){document.getElementById('city-drop').classList.add('open');renderCityDrop(allCities.slice(0,100))}
+
+function pickCity(n){
+  selCity=n;document.getElementById('city-drop').classList.remove('open');
+  document.getElementById('city-sw').style.display='none';
+  const cs=cityScore(selC?selC.n:'',n);const col=scoreColor(cs);const lbl=scoreLbl(cs);
+  const csel=document.getElementById('city-sel');
+  csel.style.cssText=`display:flex;padding:8px 11px;border-radius:8px;font-size:.78rem;font-weight:700;align-items:center;gap:6px;background:${col}12;border:1.5px solid ${col}32;color:${col}`;
+  csel.innerHTML=`<span>📍</span><span style="font-weight:800">${n}</span><span class="cpill" style="background:${col};margin-left:4px">${cs}/100</span><button class="city-sel-x" onclick="clearCity()">✕</button>`;
+  const csc=document.getElementById('city-sc');
+  csc.style.cssText=`display:block;border-radius:9px;padding:10px 12px;background:${col}10;border:1px solid ${col}22`;
+  csc.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:.62rem;font-weight:700;color:${col};letter-spacing:.08em;text-transform:uppercase">📍 ${n} — City Score</div><div style="font-size:.62rem;color:var(--text2);margin-top:3px;line-height:1.6">${lbl}</div></div><div style="font-family:var(--sans);font-size:1.7rem;font-weight:900;color:${col};line-height:1">${cs}<span style="font-size:.6rem;opacity:.6">/100</span></div></div>`;
+  csc.classList.add('on');
+}
+function clearCity(){selCity=null;document.getElementById('city-sel').style.display='none';document.getElementById('city-sw').style.display='block';document.getElementById('city-si').value='';renderCityDrop(allCities.slice(0,60));document.getElementById('city-sc').classList.remove('on')}
+
+// KEYWORDS
+function addKw(){const i=document.getElementById('kwi'),v=i.value.trim();if(!v||kwList.includes(v))return;kwList.push(v);i.value='';renderKwTags()}
+function addS(el,v){if(kwList.includes(v))return;kwList.push(v);el.classList.add('used');renderKwTags()}
+function removeKw(v){kwList=kwList.filter(k=>k!==v);document.querySelectorAll('.sug').forEach(s=>{if(s.textContent.trim()===v)s.classList.remove('used')});renderKwTags()}
+function renderKwTags(){document.getElementById('kwtags').innerHTML=kwList.map(k=>`<div class="kwtag">${k}<span class="kwx" onclick="removeKw('${k}')">✕</span></div>`).join('')}
+
+// SCRAPE SIMULATION
+const NAMES=['Digital Agency','SEO Solutions','Web Marketing','Growth Partners','Link Masters','PR Agency','Content Studio','Media Group','Digital Hub','Search Experts','Outreach Pros','Social Media Co','Brand Digital','Market Leaders','Online Boost'];
+const CATS=['SEO Agency','Digital Marketing','Web Design','PR Agency','Content Agency','Social Media','Link Building','Marketing Consultant','Advertising','Branding'];
+
+// WA detection logic (simulated — real would ping wa.me)
+function detectWA(phone,country){
+  if(!phone||phone==='—')return'no';
+  const waFriendly=['Senegal','Ghana','Kenya','Tanzania','Nigeria','South Africa','Morocco','Egypt','United Arab Emirates','Saudi Arabia','India','Pakistan','Bangladesh','Indonesia','Philippines','Colombia','Mexico','Brazil','Turkey','Malaysia','Vietnam','Thailand'];
+  if(waFriendly.includes(country))return Math.random()>0.3?'yes':'unknown';
+  if(['United States','Canada','Australia','United Kingdom'].includes(country))return Math.random()>0.5?'yes':'no';
+  return Math.random()>0.4?'yes':'unknown';
+}
+
+const CCODES={Pakistan:'+92',Germany:'+49','United Kingdom':'+44','United States':'+1','United Arab Emirates':'+971','Saudi Arabia':'+966',India:'+91',France:'+33',Australia:'+61',Canada:'+1',Senegal:'+221',Ghana:'+233',Kenya:'+254',Norway:'+47',Sweden:'+46',Netherlands:'+31',Nigeria:'+234','South Africa':'+27',Tanzania:'+255',Rwanda:'+250',Morocco:'+212',Egypt:'+20',Qatar:'+974',Kuwait:'+965',Ireland:'+353',Belgium:'+32',Denmark:'+45',Finland:'+358',Poland:'+48',Romania:'+40',Portugal:'+351',Spain:'+34',Italy:'+39',Turkey:'+90',Brazil:'+55',Mexico:'+52',Colombia:'+57',Argentina:'+54',Singapore:'+65',Malaysia:'+60',Philippines:'+63',Vietnam:'+84',Thailand:'+66',Indonesia:'+62'};
+
+async function startScrape(){
+  if(!selC){toast('⚠️','Missing','Select a country');return}
+  if(!selCity){toast('⚠️','Missing','Select a city');return}
+  if(!kwList.length){toast('⚠️','Missing','Add at least one keyword');return}
+
+  const maxPg=parseInt(document.getElementById('pgSlider').value)||5;
+  allLeads=[];totalPages=0;
+  document.getElementById('tbody').innerHTML='';
+  document.getElementById('dtbl').style.display='table';
+  document.getElementById('emptyState').style.display='none';
+  document.getElementById('toolbar').classList.add('on');
+  switchTab('leads');
+
+  // Page counter
+  document.getElementById('pg-nums').innerHTML=Array.from({length:maxPg},(_,i)=>`<div class="pgn" id="pgn-${i+1}">${i+1}</div>`).join('');
+  document.getElementById('pg-counter').classList.add('on');
+
+  const prog=document.getElementById('prog');prog.classList.add('on');
+  const cons=document.getElementById('console');cons.classList.add('on');cons.innerHTML='';
+  document.getElementById('lbtn').disabled=true;document.getElementById('ltxt').textContent='Scraping…';
+
+  const query=`${kwList.join(' ')} in ${selCity}, ${selC.n}`;
+  const cc=CCODES[selC.n]||'+00';
+
+  const STEPS=[
+    {l:`🤖 Launching headless browser…`,t:'cinfo'},
+    {l:`🔍 Google Maps search: "${query}"`,t:'cwarn'},
+    {l:'📋 Results panel loaded. Starting pagination…',t:'cinfo'},
+  ];
+  for(let i=0;i<STEPS.length;i++){
+    await sleep(500+Math.random()*300);
+    if(i>0)setPS(i-1,'done');setPS(i,'act');
+    const p=Math.round(((i+1)/STEPS.length)*18);
+    setProg(p,STEPS[i].l);addLog(STEPS[i].t,STEPS[i].l);
+  }
+  setPS(2,'done');setPS(3,'act');
+
+  let ni=0;
+  for(let pg=1;pg<=maxPg;pg++){
+    document.getElementById(`pgn-${pg}`).className='pgn act';
+    addLog('cwarn',`📜 Scraping page ${pg}/${maxPg} — scrolling results panel…`);
+    const p=18+Math.round((pg/maxPg)*60);
+    setProg(p,`Scraping page ${pg} of ${maxPg}…`);
+
+    const perPg=Math.floor(14+Math.random()*8);
+    for(let j=0;j<perPg;j++){
+      await sleep(110+Math.random()*70);
+      const hasE=document.getElementById('t-email').checked?Math.random()>0.42:false;
+      const hasP=Math.random()>0.15;
+      const hasW=Math.random()>0.28;
+      const nm=NAMES[ni%NAMES.length]+' '+(Math.floor(ni/NAMES.length)>0?Math.floor(ni/NAMES.length)+1:'');ni++;
+      const dom=nm.toLowerCase().replace(/[^a-z0-9]/g,'').substring(0,14);
+      const ph=hasP?`${cc} ${Math.floor(600000000+Math.random()*399999999)}`:'—';
+      const waStatus=document.getElementById('t-wa').checked?detectWA(ph,selC.n):'unknown';
+      const lead={
+        name:nm.trim(),flag:selC.f,
+        cat:CATS[Math.floor(Math.random()*CATS.length)],
+        email:hasE?`info@${dom}.com`:'—',
+        phone:ph,
+        wa:waStatus,
+        website:hasW?`${dom}.com`:'—',
+        score:Math.floor(50+Math.random()*45),
+        status:'New',city:selCity,country:selC.n,
+        page:pg,rating:`${(3.2+Math.random()*1.7).toFixed(1)} ★`,
+        reviews:Math.floor(3+Math.random()*200)
+      };
+      allLeads.push(lead);appendRow(lead,allLeads.length-1);
+      document.getElementById('pg-collected').textContent=allLeads.length;
+      updateStats();
+    }
+    totalPages=pg;
+    document.getElementById(`pgn-${pg}`).className='pgn done';
+    addLog('cok',`✅ Page ${pg} complete — ${perPg} listings collected`);
+  }
+
+  setPS(3,'done');setPS(4,'act');
+  addLog('cwarn',`🌐 Crawling ${allLeads.filter(l=>l.website!=='—').length} websites for emails…`);
+  setProg(88,'Crawling websites for emails…');
+  await sleep(1000);
+  setPS(4,'done');setPS(5,'act');
+  addLog('cinfo',`💬 WhatsApp detection: checking ${allLeads.filter(l=>l.phone!=='—').length} numbers…`);
+  await sleep(600);
+  setPS(5,'done');setPS(6,'act');
+  setProg(100,`Done — ${allLeads.length} leads from ${totalPages} pages`);
+  addLog('cok',`🎉 Complete! ${allLeads.length} total leads from ${totalPages} pages in ${selCity}`);
+  setPS(6,'done');
+
+  document.getElementById('tb-cnt').textContent=allLeads.length;
+  document.getElementById('showCnt').textContent=allLeads.length;
+  document.getElementById('hs-pg').textContent=totalPages;
+  document.getElementById('an-pg').textContent=totalPages;
+  updateLeadBtns();updateAnalytics();
+  document.getElementById('lbtn').disabled=false;
+  document.getElementById('ltxt').textContent='Launch Google Maps Scraper';
+  document.getElementById('lico').textContent='🗺';
+  toast('✅',`${allLeads.length} Leads Scraped`,`${totalPages} pages · ${selCity}, ${selC.n}`);
+}
+
+function setPS(i,c){const e=document.getElementById('ps'+i);if(e)e.className='ps '+c}
+function setProg(pct,lbl){document.getElementById('pfill').style.width=pct+'%';document.getElementById('ppct').textContent=pct+'%';document.getElementById('plbl').textContent=lbl}
+function addLog(cls,msg){const c=document.getElementById('console');const t=new Date().toTimeString().split(' ')[0];c.innerHTML+=`<div class="cl"><span class="ct">${t}</span><span class="${cls}">${msg}</span></div>`;c.scrollTop=c.scrollHeight}
+
+function appendRow(l,idx){
+  const hE=l.email!=='—',hP=l.phone!=='—',hW=l.website!=='—';
+  const sc=l.score>=80?'var(--green)':l.score>=65?'var(--amber)':'var(--text3)';
+  const waBadge=l.wa==='yes'?'<span class="wa-badge wa-yes">✅ WA Available</span>':l.wa==='no'?'<span class="wa-badge wa-no">❌ Not on WA</span>':'<span class="wa-badge wa-unk">⏳ Unverified</span>';
+  const tr=document.createElement('tr');tr.dataset.idx=idx;tr.dataset.wa=l.wa;
+  tr.innerHTML=`<td><div class="coname">${l.flag} ${l.name}</div><div class="coloc">📍 ${l.city}, ${l.country}</div></td>
+    <td><span class="bd bd-blue">${l.cat}</span></td>
+    <td><span style="font-size:.63rem;color:var(--amber)">${l.rating}</span> <span style="font-size:.56rem;color:var(--text4)">(${l.reviews})</span></td>
+    <td>${hE?`<span class="bd bd-green">✉ ${l.email}</span>`:'<span class="bd bd-gray">—</span>'}</td>
+    <td>${waBadge}</td>
+    <td>${hP?`<span class="bd bd-teal">📞 ${l.phone}</span>`:'<span class="bd bd-gray">—</span>'}</td>
+    <td>${hW?`<a href="#" style="color:var(--blue2);font-size:.66rem;text-decoration:none">${l.website}</a>`:'<span class="bd bd-gray">—</span>'}</td>
+    <td><span class="sbar"><span class="sfill" style="width:${l.score}%;background:${sc}"></span></span><span class="sval" style="color:${sc}">${l.score}</span></td>
+    <td><span class="pg-tag">Pg ${l.page}</span></td>
+    <td><div class="arow"><button class="abtn abtn-wa" title="WA Pitch" onclick="quickSend(${idx},'wa')">💬</button><button class="abtn abtn-em" title="Email Pitch" onclick="quickSend(${idx},'em')">✉️</button><button class="abtn" title="Use in pitch" onclick="setActiveLead(${idx});switchTab('pitch')">✍️</button><button class="abtn" title="Remove" onclick="this.closest('tr').remove()">🗑</button></div></td>`;
+  document.getElementById('tbody').appendChild(tr);
+}
+
+function quickSend(idx,t){activeLeadIdx=idx;userEdited=false;updateLeadBtns();loadPitch();openSendModal(t)}
+function markSent(idx){if(allLeads[idx])allLeads[idx].status='Sent';const e=document.getElementById('st-'+idx);if(e){e.textContent='Sent';e.className='bd bd-blue'}}
+
+// FILTERS
+function doFlt(btn,t){
+  document.querySelectorAll('.flt').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  let cnt=0;
+  document.querySelectorAll('#tbody tr').forEach(r=>{
+    const l=allLeads[+r.dataset.idx];let show=true;
+    if(!l)return;
+    if(t==='email')show=l.email!=='—';
+    if(t==='wa-yes')show=l.wa==='yes';
+    if(t==='wa-no')show=l.wa==='no';
+    if(t==='hi')show=l.score>=80;
+    r.style.display=show?'':'none';if(show)cnt++;
+  });
+  document.getElementById('showCnt').textContent=cnt;
+}
+
+function updateStats(){
+  const e=allLeads.filter(l=>l.email!=='—').length;
+  const w=allLeads.filter(l=>l.wa==='yes').length;
+  document.getElementById('hs-l').textContent=allLeads.length;
+  document.getElementById('hs-e').textContent=e;
+  document.getElementById('hs-wa').textContent=w;
+  document.getElementById('tb-cnt').textContent=allLeads.length;
+  document.getElementById('showCnt').textContent=allLeads.length;
+}
+function updateAnalytics(){
+  document.getElementById('an-t').textContent=allLeads.length;
+  document.getElementById('an-pg').textContent=totalPages;
+  document.getElementById('an-e').textContent=allLeads.filter(l=>l.email!=='—').length;
+  document.getElementById('an-wa').textContent=allLeads.filter(l=>l.wa==='yes').length;
+}
+
+function switchTab(t){
+  ['leads','pitch','analytics'].forEach(n=>{document.getElementById('tab-'+n).className='tab'+(n===t?' on':'')});
+  document.getElementById('leads-panel').style.display=t==='leads'?'block':'none';
+  document.getElementById('pitch-panel').className='pitch-panel'+(t==='pitch'?' on':'');
+  document.getElementById('analytics-panel').className='an-panel'+(t==='analytics'?' on':'');
+  document.getElementById('toolbar').className='toolbar'+(t==='leads'?' on':'');
+  if(t==='analytics')updateAnalytics();
+  if(t==='pitch'){loadPitch();updateLeadBtns()}
+}
+
+// PITCH — fully editable
+function getSig(){const n=document.getElementById('sig-name').value||'Abdullah';const co=document.getElementById('sig-co').value;return(senderMode==='co'&&co)?`${n}\n${co}`:n}
+function setSender(m){senderMode=m;document.getElementById('sto-self').className='sto'+(m==='self'?' on':'');document.getElementById('sto-co').className='sto'+(m==='co'?' on':'');if(!userEdited)loadPitch()}
+function switchSvc(i){activeSvc=i;activeTpl=0;[0,1,2].forEach(n=>{document.getElementById('svc-'+n).className='svc'+(n===i?' on':'');document.getElementById('ttab-'+n).className='ttab'+(n===0?' on':'')});userEdited=false;loadPitch()}
+function switchTpl(i){activeTpl=i;[0,1,2].forEach(n=>document.getElementById('ttab-'+n).className='ttab'+(n===i?' on':''));userEdited=false;loadPitch()}
+
+function loadPitch(){
+  // Load template raw text into textarea
+  const t=TPLS[activeSvc][activeTpl];
+  document.getElementById('comp-lbl').textContent=`${t.ch} · ${t.lbl}`;
+  const sl=document.getElementById('subj-l');
+  if(t.subj){sl.style.display='block';const l=allLeads[activeLeadIdx];document.getElementById('subj-t').textContent=l?t.subj.replace(/\[AGENCY\]/g,l.name).replace(/\[CITY\]/g,l.city):t.subj}
+  else sl.style.display='none';
+  if(!userEdited){
+    document.getElementById('pitch-ta').value=t.raw.replace(/\[SIG\]/g,getSig());
+  }
+  syncPreview();
+}
+
+function syncPitch(){if(!userEdited)loadPitch()}
+
+function onEditChange(){
+  userEdited=true;
+  syncPreview();
+}
+
+function syncPreview(){
+  const raw=document.getElementById('pitch-ta').value;
+  const l=allLeads[activeLeadIdx];
+  let html=raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  if(l){
+    html=html.replace(/\[AGENCY\]/g,`<span class="vc">${l.name}</span>`).replace(/\[NAME\]/g,`<span class="vc">${l.name.split(' ')[0]}</span>`).replace(/\[CITY\]/g,`<span class="vcity">${l.city}</span>`);
+  } else {
+    html=html.replace(/\[AGENCY\]/g,'<span class="vc">[AGENCY]</span>').replace(/\[NAME\]/g,'<span class="vc">[NAME]</span>').replace(/\[CITY\]/g,'<span class="vcity">[CITY]</span>');
+  }
+  document.getElementById('pitch-preview').innerHTML=html;
+}
+
+function toggleView(mode){
+  editMode=mode;
+  document.getElementById('btn-edit').className='pel-btn'+(mode==='edit'?' active':'');
+  document.getElementById('btn-preview').className='pel-btn'+(mode==='preview'?' active':'');
+  document.getElementById('pitch-ta').style.display=mode==='edit'?'block':'none';
+  document.getElementById('pitch-preview').style.display=mode==='preview'?'block':'none';
+  if(mode==='preview')syncPreview();
+}
+
+function resetPitch(){userEdited=false;loadPitch();toast('↺','Reset','Template restored to original')}
+
+function getFinalPitch(){
+  const raw=document.getElementById('pitch-ta').value;
+  const l=allLeads[activeLeadIdx];
+  if(!l)return raw;
+  return raw.replace(/\[AGENCY\]/g,l.name).replace(/\[NAME\]/g,l.name.split(' ')[0]).replace(/\[CITY\]/g,l.city);
+}
+
+function copyPitch(){navigator.clipboard.writeText(getFinalPitch()).then(()=>toast('📋','Copied!','Pitch copied to clipboard'))}
+
+function updateLeadBtns(){
+  document.getElementById('ls-btns').innerHTML=allLeads.slice(0,7).map((l,i)=>`<button class="ls-btn${i===activeLeadIdx?' on':''}" onclick="setActiveLead(${i})">${l.flag} ${l.name.split(' ')[0]}</button>`).join('')+(allLeads.length===0?'<span style="font-size:.6rem;color:var(--text4)">Find leads first</span>':'');
+}
+function setActiveLead(i){activeLeadIdx=i;updateLeadBtns();userEdited=false;loadPitch();document.getElementById('pv-box').style.display='none'}
+
+// SEND MODAL
+let sendType='wa';
+function openSendModal(type){
+  sendType=type;const isWA=type==='wa';
+  const l=allLeads[activeLeadIdx];
+  const t=TPLS[activeSvc][activeTpl];
+  document.getElementById('mod-t').textContent=isWA?'Send WhatsApp Pitch':'Send Email Pitch';
+  document.getElementById('mod-s').textContent=l?`To: ${l.name} · ${l.city}`:'Fill in recipient';
+  document.getElementById('mod-to').value=l?(isWA?l.phone:l.email):'';
+  document.getElementById('mod-to').placeholder=isWA?'+221 77 123 4567':'contact@company.com';
+  const sw=document.getElementById('mod-sw');
+  if(!isWA&&t.subj){sw.style.display='block';document.getElementById('mod-subj').value=l?t.subj.replace(/\[AGENCY\]/g,l.name).replace(/\[CITY\]/g,l.city):''}
+  else sw.style.display='none';
+  document.getElementById('mod-body').value=getFinalPitch().replace(/^Subject:.*\n\n/,'');
+  const btn=document.getElementById('mod-send');
+  btn.textContent=isWA?'💬 Open WhatsApp':'✉️ Open Email';
+  btn.className=`snd-btn ${isWA?'snd-wa':'snd-em'}`;
+  document.getElementById('mbg').classList.add('open');
+}
+function closeMod(){document.getElementById('mbg').classList.remove('open')}
+function execSend(){
+  const to=document.getElementById('mod-to').value.trim();
+  const body=document.getElementById('mod-body').value;
+  if(sendType==='wa'){const ph=to.replace(/\D/g,'');window.open(`https://wa.me/${ph}?text=${encodeURIComponent(body)}`,'_blank')}
+  else{const subj=document.getElementById('mod-subj').value||'Partnership Opportunity';window.location.href=`mailto:${to}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`}
+  const l=allLeads[activeLeadIdx];
+  if(l){l.status='Sent';const e=document.getElementById('st-'+activeLeadIdx);if(e){e.textContent='Sent';e.className='bd bd-blue'}}
+  document.getElementById('hs-p'+'').textContent=+document.getElementById('hs-p'+'').textContent+1;
+  closeMod();toast(sendType==='wa'?'💬':'✉️','Sent!',`Pitch sent to ${l?l.name:'lead'}`);
+}
+
+// EXPORT
+function doCSV(){
+  if(!allLeads.length){toast('⚠️','No Data','Run scraper first');return}
+  const h=['Company','Category','Email','WA Status','Phone','Website','Score','Status','Rating','Reviews','Page','City','Country'];
+  const rows=allLeads.map(l=>[l.name,l.cat,l.email,l.wa,l.phone,l.website,l.score,l.status,l.rating,l.reviews,l.page,l.city,l.country]);
+  const csv=[h,...rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download=`leadradar_${selCity||'export'}_${Date.now()}.csv`;a.click();
+  toast('⬇','CSV Downloaded',`${allLeads.length} leads exported`);
+}
+
+function toast(ico,title,msg){
+  const t=document.getElementById('toast');
+  document.getElementById('t-i').textContent=ico;document.getElementById('t-t').textContent=title;document.getElementById('t-m').textContent=msg;
+  t.classList.add('on');clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove('on'),3500);
+}
+function goTool(){document.getElementById('tool').scrollIntoView({behavior:'smooth'})}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+</script>
+</body>
+</html>
