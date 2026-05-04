@@ -335,7 +335,7 @@ textarea.modal-inp{resize:vertical;min-height:140px;font-family:var(--mono);font
 /* Scoring info box */
 .info-box{background:var(--blue-l);border:1px solid var(--blue-m);border-radius:9px;padding:11px 13px;font-size:.68rem;color:var(--text2);line-height:1.8}
 .info-box strong{color:var(--blue2)}
-<button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
+
 ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 </style>
 </head>
@@ -1313,25 +1313,6 @@ function toast(ico,title,msg){
 }
 function goTool(){document.getElementById('tool').scrollIntoView({behavior:'smooth'})}
 function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
-  function toggleTheme(){
-  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
-  const newTheme=isDark?'light':'dark';
-  document.documentElement.setAttribute('data-theme',newTheme);
-  document.getElementById('theme-btn').textContent=newTheme==='dark'?'☀️':'🌙';
-  localStorage.setItem('lr-theme',newTheme);
-}
-(function(){
-  const saved=localStorage.getItem('lr-theme');
-  const preferDark=window.matchMedia('(prefers-color-scheme:dark)').matches;
-  const theme=saved||(preferDark?'dark':'light');
-  if(theme==='dark'){
-    document.documentElement.setAttribute('data-theme','dark');
-    document.addEventListener('DOMContentLoaded',function(){
-      const btn=document.getElementById('theme-btn');
-      if(btn)btn.textContent='☀️';
-    });
-  }
-})();
 </script>
 </body>
 </html>
