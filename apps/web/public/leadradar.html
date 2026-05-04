@@ -184,12 +184,13 @@ a{text-decoration:none;color:inherit}button{cursor:pointer;font-family:var(--f)}
 /* Main two-column grid */
 .hero-row{
   position:relative;z-index:1;
-  max-width:1320px;margin:0 auto;
-  padding:90px 56px 70px;
-  display:grid;grid-template-columns:1.05fr .95fr;gap:72px;
+  max-width:1400px;margin:0 auto;
+  padding:100px 60px 120px;
+  display:grid;grid-template-columns:1fr 1.1fr;gap:60px;
   align-items:center
 }
-@media(max-width:1024px){.hero-row{grid-template-columns:1fr;gap:56px;padding:72px 32px 56px}}
+@media(max-width:1200px){.hero-row{max-width:1100px;padding:90px 40px 110px;gap:48px}}
+@media(max-width:1024px){.hero-row{grid-template-columns:1fr;gap:48px;padding:72px 32px 80px}}
 
 /* ── LEFT ── */
 .hero-content{display:flex;flex-direction:column;align-items:flex-start}
@@ -336,7 +337,7 @@ a{text-decoration:none;color:inherit}button{cursor:pointer;font-family:var(--f)}
 .mf-url-lock{font-size:.6rem;color:rgba(74,222,128,.6)}
 
 /* Body layout */
-.mf-body{display:grid;grid-template-columns:168px 1fr;min-height:280px}
+.mf-body{display:grid;grid-template-columns:175px 1fr;min-height:310px}
 .mf-sidebar{
   background:rgba(0,0,0,.3);
   border-right:1px solid rgba(255,255,255,.06);
@@ -437,13 +438,50 @@ a{text-decoration:none;color:inherit}button{cursor:pointer;font-family:var(--f)}
 .fc-s{font-family:var(--mono);font-size:.54rem;color:rgba(255,255,255,.4);margin-top:2px}
 .fc-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:pulse 2s infinite;flex-shrink:0}
 
-/* Glow fade at bottom */
-.hero-glow{position:absolute;bottom:-2px;left:0;right:0;height:140px;z-index:2;pointer-events:none;background:linear-gradient(to bottom,transparent,var(--bg))}
+/* Glow fade at bottom — fade into surface not bg to avoid jank */
+.hero-glow{position:absolute;bottom:-2px;left:0;right:0;height:200px;z-index:2;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(3,13,6,.6) 50%,#030d06 100%)}
+
+/* ── FIX 1: Transition bridge section ── */
+.hero-bridge{background:linear-gradient(to bottom,#030d06,var(--bg));height:80px;position:relative;z-index:3;margin-top:-2px}
+
+/* ── FIX 3: Mobile typography ── */
+@media(max-width:768px){
+  .hero-row{padding:60px 20px 48px;gap:40px}
+  .hero-h1{font-size:2.2rem;letter-spacing:-1.5px}
+  .hero-sub{font-size:.92rem;max-width:100%}
+  .hero-cta{padding:13px 22px;font-size:.88rem}
+  .hero-sec{padding:13px 18px;font-size:.82rem}
+  .hero-stats{flex-wrap:wrap}
+  .hs-item{flex:1 1 calc(50% - 1px);min-width:0}
+  .hs-v{font-size:1.3rem}
+  .mockup-wrap{padding:10px}
+  .float-card{display:none}
+  .mf-body{grid-template-columns:1fr;min-height:auto}
+  .mf-sidebar{display:none}
+  .hero-tag-text{font-size:.55rem}
+}
+@media(max-width:480px){
+  .hero-h1{font-size:1.9rem;letter-spacing:-1px}
+  .hero-btns{flex-direction:column;width:100%}
+  .hero-cta,.hero-sec{width:100%;justify-content:center}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .proof-sep{display:none}
+}
+
+/* ── FIX 4: Page load animation ── */
+@keyframes heroFadeIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mockupSlideIn{from{opacity:0;transform:translateX(28px) scale(.97)}to{opacity:1;transform:translateX(0) scale(1)}}
+.hero-content{animation:heroFadeIn .7s cubic-bezier(.22,.61,.36,1) both}
+.hero-mockup{animation:mockupSlideIn .8s cubic-bezier(.22,.61,.36,1) .2s both}
+.hero-tag{animation:heroFadeIn .5s ease .05s both}
+.hero-stats{animation:heroFadeIn .6s ease .35s both}
+.float-card.fc-top{animation:floatIn .7s cubic-bezier(.34,1.56,.64,1) .6s both}
+.float-card.fc-bottom{animation:floatIn .7s cubic-bezier(.34,1.56,.64,1) .9s both}
 
 /* ════════════════════════════════════════
    LOGOS STRIP
 ════════════════════════════════════════ */
-.logos-strip{padding:40px 0;border-bottom:1px solid var(--border);background:var(--surface)}
+.logos-strip{padding:36px 0;border-bottom:1px solid var(--border);background:var(--bg)}
 .logos-in{max-width:1240px;margin:0 auto;padding:0 32px}
 .logos-label{text-align:center;font-family:var(--mono);font-size:.58rem;color:var(--text5);letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px}
 .logos-row{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap}
@@ -1076,6 +1114,7 @@ a{text-decoration:none;color:inherit}button{cursor:pointer;font-family:var(--f)}
   </div>
   <div class="hero-glow"></div>
 </section>
+<div class="hero-bridge"></div>
 
 <!-- LOGOS -->
 <div class="logos-strip">
