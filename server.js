@@ -1,0 +1,10 @@
+require('dotenv').config();
+const express=require('express'),mongoose=require('mongoose'),cors=require('cors'),helmet=require('helmet'),rateLimit=require('express-rate-limit'),path=require('path');
+const app=express(),PORT=process.env.PORT||3000;
+app.use(helmet({contentSecurityPolicy:false}));app.use(cors());app.use(express.json());
+app.use('/api/',rateLimit({windowMs:15*60*1000,max:100}));
+app.use(express.static(path.join(__dirname)));
+app.use('/api/auth',require('./routes/auth'));app.use('/api/leads',require('./routes/leads'));app.use('/api/pitch',require('./routes/pitch'));
+app.get('/api/health',(req,res)=>res.json({status:'ok'}));
+app.get('*',(req,res)=>res.sendFile(path.join(__dirname,'index.html')));
+mongoose.connect(process.env.MONGODB_URI).then(()=>app.listen(PORT,()=>console.log('Running on port '+PORT))).catch(err=>{console.error(err.message);app.listen(PORT,()=>console.log('Running port '+PORT));});
